@@ -1,0 +1,316 @@
+{
+  "$defs": {
+    "FrameReference": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_index": {
+          "minimum": 0,
+          "title": "Frame Index",
+          "type": "integer"
+        },
+        "pts": {
+          "title": "Pts",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "frame_index",
+        "pts"
+      ],
+      "title": "FrameReference",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "synthetic",
+            "manual"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "protocol_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Protocol Id",
+          "type": "string"
+        },
+        "annotation_ref": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Annotation Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "protocol_id",
+        "annotation_ref"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "SeriesPoint": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "quality_reasons": {
+                "maxItems": 0
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "quality_reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "frame_index": {
+          "minimum": 0,
+          "title": "Frame Index",
+          "type": "integer"
+        },
+        "pts": {
+          "title": "Pts",
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 180,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "quality_reasons": {
+          "items": {
+            "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+            "type": "string"
+          },
+          "title": "Quality Reasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "frame_index",
+        "pts",
+        "value",
+        "quality_reasons"
+      ],
+      "title": "SeriesPoint",
+      "type": "object"
+    },
+    "Uncertainty": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "not_established",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "Uncertainty",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "else": {
+        "properties": {
+          "value": {
+            "type": "null"
+          },
+          "evidence": {
+            "type": "null"
+          },
+          "quality_reasons": {
+            "minItems": 1
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "status": {
+            "const": "computed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "evidence": {
+            "type": "object"
+          },
+          "quality_reasons": {
+            "maxItems": 0
+          },
+          "series": {
+            "items": {
+              "properties": {
+                "value": {
+                  "type": "number"
+                }
+              }
+            },
+            "minItems": 2
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "metric_id": {
+      "const": "front_knee_projected_flexion_peak",
+      "title": "Metric Id",
+      "type": "string"
+    },
+    "definition_version": {
+      "const": "0.1.0",
+      "title": "Definition Version",
+      "type": "string"
+    },
+    "asset_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Asset Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "computed",
+        "insufficient_evidence"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "maximum": 180,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Value"
+    },
+    "unit": {
+      "const": "deg",
+      "title": "Unit",
+      "type": "string"
+    },
+    "body_side": {
+      "enum": [
+        "left",
+        "right"
+      ],
+      "title": "Body Side",
+      "type": "string"
+    },
+    "phase_id": {
+      "const": "serve_preparation",
+      "title": "Phase Id",
+      "type": "string"
+    },
+    "evidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/FrameReference"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "series": {
+      "items": {
+        "$ref": "#/$defs/SeriesPoint"
+      },
+      "title": "Series",
+      "type": "array"
+    },
+    "quality_reasons": {
+      "items": {
+        "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "title": "Quality Reasons",
+      "type": "array"
+    },
+    "method_version": {
+      "const": "m01_unfiltered_complete_window_v0",
+      "title": "Method Version",
+      "type": "string"
+    },
+    "filter": {
+      "const": "none",
+      "title": "Filter",
+      "type": "string"
+    },
+    "validation_ref": {
+      "title": "Validation Ref",
+      "type": "null"
+    },
+    "uncertainty": {
+      "$ref": "#/$defs/Uncertainty"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    }
+  },
+  "required": [
+    "schema_version",
+    "metric_id",
+    "definition_version",
+    "asset_id",
+    "status",
+    "value",
+    "unit",
+    "body_side",
+    "phase_id",
+    "evidence",
+    "series",
+    "quality_reasons",
+    "method_version",
+    "filter",
+    "validation_ref",
+    "uncertainty",
+    "provenance"
+  ],
+  "title": "ResearchResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

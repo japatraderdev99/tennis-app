@@ -1,0 +1,449 @@
+{
+  "$defs": {
+    "AttemptCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "total": {
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "valid": {
+          "minimum": 0,
+          "title": "Valid",
+          "type": "integer"
+        },
+        "rejected": {
+          "minimum": 0,
+          "title": "Rejected",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "total",
+        "valid",
+        "rejected"
+      ],
+      "title": "AttemptCounts",
+      "type": "object"
+    },
+    "Comparison": {
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "const": "not_evaluated",
+          "title": "State",
+          "type": "string"
+        },
+        "delta": {
+          "title": "Delta",
+          "type": "null"
+        },
+        "reason": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "delta",
+        "reason"
+      ],
+      "title": "Comparison",
+      "type": "object"
+    },
+    "ErrorEnvelope": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "0.1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "code": {
+          "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "details": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Details",
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema_version",
+        "code",
+        "message",
+        "retryable",
+        "details"
+      ],
+      "title": "ErrorEnvelope",
+      "type": "object"
+    },
+    "Execution": {
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "enum": [
+            "succeeded",
+            "failed",
+            "cancelled"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "title": "Execution",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "PublicEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_index": {
+          "minimum": 0,
+          "title": "Frame Index",
+          "type": "integer"
+        },
+        "pts": {
+          "title": "Pts",
+          "type": "integer"
+        },
+        "asset_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Asset Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "frame_index",
+        "pts",
+        "asset_id"
+      ],
+      "title": "PublicEvidence",
+      "type": "object"
+    },
+    "PublicMetric": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "research_only"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "attempts": {
+                "properties": {
+                  "valid": {
+                    "minimum": 1
+                  }
+                }
+              },
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "insufficient_evidence"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "attempts": {
+                "properties": {
+                  "valid": {
+                    "const": 0
+                  }
+                }
+              },
+              "quality_reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "metric_id": {
+          "const": "front_knee_projected_flexion_peak",
+          "title": "Metric Id",
+          "type": "string"
+        },
+        "definition_version": {
+          "const": "0.1.0",
+          "title": "Definition Version",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "research_only",
+            "insufficient_evidence",
+            "unsupported"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "null"
+        },
+        "unit": {
+          "const": "deg",
+          "title": "Unit",
+          "type": "string"
+        },
+        "measurement_space": {
+          "const": "image_2d_projected",
+          "title": "Measurement Space",
+          "type": "string"
+        },
+        "body_side": {
+          "anyOf": [
+            {
+              "enum": [
+                "left",
+                "right"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Body Side"
+        },
+        "phase_id": {
+          "const": "serve_preparation",
+          "title": "Phase Id",
+          "type": "string"
+        },
+        "validation_ref": {
+          "title": "Validation Ref",
+          "type": "null"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/Uncertainty"
+        },
+        "quality_reasons": {
+          "items": {
+            "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+            "type": "string"
+          },
+          "title": "Quality Reasons",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/PublicEvidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "attempts": {
+          "$ref": "#/$defs/AttemptCounts"
+        },
+        "pipeline_ref": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Pipeline Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "metric_id",
+        "definition_version",
+        "status",
+        "value",
+        "unit",
+        "measurement_space",
+        "body_side",
+        "phase_id",
+        "validation_ref",
+        "uncertainty",
+        "quality_reasons",
+        "evidence",
+        "attempts",
+        "pipeline_ref"
+      ],
+      "title": "PublicMetric",
+      "type": "object"
+    },
+    "Uncertainty": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "not_established",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "Uncertainty",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "else": {
+        "properties": {
+          "error": {
+            "type": "null"
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "state": {
+                "const": "failed"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "state": {
+                "enum": [
+                  "failed",
+                  "cancelled"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "metrics": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "report_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Report Id",
+      "type": "string"
+    },
+    "session_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Session Id",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "asset_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Asset Id",
+      "type": "string"
+    },
+    "is_demo": {
+      "title": "Is Demo",
+      "type": "boolean"
+    },
+    "execution": {
+      "$ref": "#/$defs/Execution"
+    },
+    "metrics": {
+      "items": {
+        "$ref": "#/$defs/PublicMetric"
+      },
+      "title": "Metrics",
+      "type": "array"
+    },
+    "comparison": {
+      "$ref": "#/$defs/Comparison"
+    },
+    "message": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Message",
+      "type": "string"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ErrorEnvelope"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "report_id",
+    "session_id",
+    "run_id",
+    "asset_id",
+    "is_demo",
+    "execution",
+    "metrics",
+    "comparison",
+    "message",
+    "error"
+  ],
+  "title": "PublicReport",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

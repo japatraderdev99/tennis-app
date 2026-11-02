@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "metric_id": "front_knee_projected_flexion_peak",
+  "definition_version": "0.1.0",
+  "asset_id": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "status": "computed",
+  "value": 181,
+  "unit": "deg",
+  "body_side": "left",
+  "phase_id": "serve_preparation",
+  "evidence": {
+    "frame_index": 1,
+    "pts": 1037
+  },
+  "series": [
+    {
+      "frame_index": 0,
+      "pts": 1000,
+      "value": 0,
+      "quality_reasons": []
+    },
+    {
+      "frame_index": 1,
+      "pts": 1037,
+      "value": 90,
+      "quality_reasons": []
+    },
+    {
+      "frame_index": 2,
+      "pts": 1080,
+      "value": 90,
+      "quality_reasons": []
+    }
+  ],
+  "quality_reasons": [],
+  "method_version": "m01_unfiltered_complete_window_v0",
+  "filter": "none",
+  "validation_ref": null,
+  "uncertainty": {
+    "status": "not_established"
+  },
+  "provenance": {
+    "kind": "synthetic",
+    "protocol_id": "synthetic_contract_v0",
+    "annotation_ref": "fixture:synthetic_landmarks_no_pose_inference"
+  }
+}

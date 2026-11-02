@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.1.0",
+  "asset_id": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "time_base": "1/1000",
+  "display_width": 200,
+  "display_height": 100,
+  "coordinate_space": "display_pixels",
+  "transforms": [],
+  "body_side": "left",
+  "phase_id": "serve_preparation",
+  "phase_window": {
+    "start_pts": 1001,
+    "end_pts": 1080
+  },
+  "timeline": [
+    {
+      "frame_index": 0,
+      "pts": 1000
+    },
+    {
+      "frame_index": 1,
+      "pts": 1037
+    },
+    {
+      "frame_index": 2,
+      "pts": 1080
+    }
+  ],
+  "observations": [
+    {
+      "frame_index": 0,
+      "pts": 1000,
+      "hip": {
+        "x": 0,
+        "y": -10
+      },
+      "knee": {
+        "x": 0,
+        "y": 0
+      },
+      "ankle": {
+        "x": 0,
+        "y": 10
+      }
+    },
+    {
+      "frame_index": 1,
+      "pts": 1037,
+      "hip": {
+        "x": 0,
+        "y": -10
+      },
+      "knee": {
+        "x": 0,
+        "y": 0
+      },
+      "ankle": {
+        "x": 10,
+        "y": 0
+      }
+    },
+    {
+      "frame_index": 2,
+      "pts": 1080,
+      "hip": {
+        "x": 0,
+        "y": -10
+      },
+      "knee": {
+        "x": 0,
+        "y": 0
+      },
+      "ankle": {
+        "x": 10,
+        "y": 0
+      }
+    }
+  ],
+  "provenance": {
+    "kind": "synthetic",
+    "protocol_id": "synthetic_contract_v0",
+    "annotation_ref": "fixture:synthetic_landmarks_no_pose_inference"
+  }
+}

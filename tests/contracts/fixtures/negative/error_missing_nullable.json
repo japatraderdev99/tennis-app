@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "report_id": "demo-report",
+  "session_id": "demo-session",
+  "run_id": "demo-run",
+  "asset_id": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "is_demo": true,
+  "execution": {
+    "state": "succeeded"
+  },
+  "metrics": [
+    {
+      "metric_id": "front_knee_projected_flexion_peak",
+      "definition_version": "0.1.0",
+      "status": "research_only",
+      "value": null,
+      "unit": "deg",
+      "measurement_space": "image_2d_projected",
+      "body_side": "left",
+      "phase_id": "serve_preparation",
+      "validation_ref": null,
+      "uncertainty": {
+        "status": "not_established"
+      },
+      "quality_reasons": [],
+      "evidence": [
+        {
+          "asset_id": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "frame_index": 1,
+          "pts": 1037
+        }
+      ],
+      "attempts": {
+        "total": 1,
+        "valid": 1,
+        "rejected": 0
+      },
+      "pipeline_ref": "fixture:m01_unfiltered_complete_window_v0"
+    }
+  ],
+  "comparison": {
+    "state": "not_evaluated",
+    "delta": null,
+    "reason": "No validated history."
+  },
+  "message": "Synthetic landmarks only; no pose inference or biomechanical validation."
+}

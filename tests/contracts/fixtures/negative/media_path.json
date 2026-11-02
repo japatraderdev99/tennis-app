@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "asset_id": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "byte_size": 128,
+  "source_name": "/private/synthetic.mp4",
+  "stream_index": 0,
+  "codec_name": "h264",
+  "coded_width": 200,
+  "coded_height": 100,
+  "sample_aspect_ratio": "1/1",
+  "rotation_degrees": null,
+  "time_base": "1/1000",
+  "duration_seconds": 0.1,
+  "nominal_fps": 30,
+  "average_fps": null,
+  "frames": [
+    {
+      "frame_index": 0,
+      "pts": 1000,
+      "time_seconds": 1
+    },
+    {
+      "frame_index": 1,
+      "pts": 1037,
+      "time_seconds": 1.037
+    },
+    {
+      "frame_index": 2,
+      "pts": 1080,
+      "time_seconds": 1.08
+    }
+  ],
+  "quality_reasons": [],
+  "timing_basis": "original_pts",
+  "temporal_resolution": "not_established",
+  "tool": {
+    "name": "ffprobe",
+    "version": "synthetic_fixture_not_a_probe_run"
+  }
+}
