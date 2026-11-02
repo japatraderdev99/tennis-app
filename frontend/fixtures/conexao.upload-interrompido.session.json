@@ -1,0 +1,24 @@
+{
+  "notice": "Simulado para revisão de interface. Não contém atleta nem inferência de modelo.",
+  "session_id": "demo-session-1",
+  "created_at": "2025-11-16T13:33:20.000Z",
+  "is_demo": true,
+  "video": {
+    "title": "Saque enviado com sinal fraco",
+    "source_name": "sinal-fraco.mp4",
+    "duration_seconds": 5.970255555555556
+  },
+  "asset_id": "sha256:d0bc80996991b75d49e799d038bf036c4af32a14e338256de390d12cf04b836a",
+  "asset_state": "importing",
+  "upload": {
+    "state": "interrupted",
+    "bytes_sent": 18450000,
+    "bytes_total": 41000000
+  },
+  "rejection": null,
+  "run": null,
+  "run_count": 0,
+  "capture": null,
+  "report": null,
+  "deletion": "none"
+}

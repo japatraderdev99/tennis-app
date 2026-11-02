@@ -1,0 +1,687 @@
+{
+  "notice": "Simulado para revisão de interface. Não contém atleta nem inferência de modelo.",
+  "scenario": "conexao",
+  "situation": "A internet cai durante o envio.",
+  "seed_options": {
+    "blocked": null,
+    "frames": [
+      {
+        "frame_index": 0,
+        "pts": 1001,
+        "detections": [
+          {
+            "detection_id": "0",
+            "bbox": {
+              "x1": 248.8280412689848,
+              "y1": 429.1597522049303,
+              "x2": 482.1061844136813,
+              "y2": 1126.4536618634995
+            }
+          },
+          {
+            "detection_id": "1",
+            "bbox": {
+              "x1": 627.4337460446716,
+              "y1": 478.1539052944756,
+              "x2": 687.9827769906685,
+              "y2": 645.4433995839775
+            }
+          }
+        ]
+      },
+      {
+        "frame_index": 60,
+        "pts": 181060,
+        "detections": [
+          {
+            "detection_id": "0",
+            "bbox": {
+              "x1": 189.6090734362663,
+              "y1": 383.7548792993736,
+              "x2": 458.38700717078484,
+              "y2": 1123.9433445596749
+            }
+          },
+          {
+            "detection_id": "1",
+            "bbox": {
+              "x1": 627.2092523403487,
+              "y1": 478.121377072302,
+              "x2": 688.2033631003469,
+              "y2": 645.5040252397545
+            }
+          }
+        ]
+      },
+      {
+        "frame_index": 150,
+        "pts": 451343,
+        "detections": [
+          {
+            "detection_id": "0",
+            "bbox": {
+              "x1": 627.5105723739393,
+              "y1": 478.1950051933748,
+              "x2": 688.3067506710316,
+              "y2": 645.5501252811285
+            }
+          },
+          {
+            "detection_id": "1",
+            "bbox": {
+              "x1": 249.46527796561486,
+              "y1": 429.58745054768104,
+              "x2": 484.09232277822036,
+              "y2": 1126.1676671818661
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "seed": {
+    "frame_index": 0,
+    "detection_id": "0"
+  },
+  "session_processing": {
+    "session_id": "demo-session-1",
+    "created_at": "2025-11-16T13:33:20.000Z",
+    "is_demo": true,
+    "video": {
+      "title": "Saque enviado com sinal fraco",
+      "source_name": "sinal-fraco.mp4",
+      "duration_seconds": 5.970255555555556
+    },
+    "asset_id": "sha256:d0bc80996991b75d49e799d038bf036c4af32a14e338256de390d12cf04b836a",
+    "asset_state": "ready",
+    "upload": {
+      "state": "done",
+      "bytes_sent": 41000000,
+      "bytes_total": 41000000
+    },
+    "rejection": null,
+    "run": {
+      "run_id": "demo-run-demo-session-1-1",
+      "state": "queued",
+      "stage": "queued",
+      "error": null
+    },
+    "run_count": 1,
+    "capture": null,
+    "report": null,
+    "deletion": "none"
+  },
+  "session_uploading": {
+    "session_id": "demo-session-1",
+    "created_at": "2025-11-16T13:33:20.000Z",
+    "is_demo": true,
+    "video": {
+      "title": "Saque enviado com sinal fraco",
+      "source_name": "sinal-fraco.mp4",
+      "duration_seconds": 5.970255555555556
+    },
+    "asset_id": "sha256:d0bc80996991b75d49e799d038bf036c4af32a14e338256de390d12cf04b836a",
+    "asset_state": "importing",
+    "upload": {
+      "state": "sending",
+      "bytes_sent": 0,
+      "bytes_total": 41000000
+    },
+    "rejection": null,
+    "run": null,
+    "run_count": 0,
+    "capture": null,
+    "report": null,
+    "deletion": "none"
+  },
+  "session": {
+    "session_id": "demo-session-1",
+    "created_at": "2025-11-16T13:33:20.000Z",
+    "is_demo": true,
+    "video": {
+      "title": "Saque enviado com sinal fraco",
+      "source_name": "sinal-fraco.mp4",
+      "duration_seconds": 5.970255555555556
+    },
+    "asset_id": "sha256:d0bc80996991b75d49e799d038bf036c4af32a14e338256de390d12cf04b836a",
+    "asset_state": "ready",
+    "upload": {
+      "state": "done",
+      "bytes_sent": 41000000,
+      "bytes_total": 41000000
+    },
+    "rejection": null,
+    "run": {
+      "run_id": "demo-run-demo-session-1-1",
+      "state": "succeeded",
+      "stage": null,
+      "error": null
+    },
+    "run_count": 1,
+    "capture": {
+      "state": "no_issue_detected",
+      "issues": []
+    },
+    "report": {
+      "schema_version": "0.1.0",
+      "report_id": "demo-report-demo-run-demo-session-1-1",
+      "session_id": "demo-session-1",
+      "run_id": "demo-run-demo-session-1-1",
+      "asset_id": "sha256:d0bc80996991b75d49e799d038bf036c4af32a14e338256de390d12cf04b836a",
+      "is_demo": true,
+      "execution": {
+        "state": "succeeded"
+      },
+      "metrics": [],
+      "comparison": {
+        "state": "not_evaluated",
+        "delta": null,
+        "reason": "No validated measurement or comparable history."
+      },
+      "message": "Demo: simulated data; no pose inference or biomechanical validation.",
+      "error": null
+    },
+    "deletion": "none"
+  },
+  "replay_sample": {
+    "session_id": "demo-session-1",
+    "run_id": "demo-run-demo-session-1-1",
+    "is_demo": true,
+    "asset_id": "sha256:d0bc80996991b75d49e799d038bf036c4af32a14e338256de390d12cf04b836a",
+    "time_base": "1/90000",
+    "display_width": 720,
+    "display_height": 1280,
+    "frames": [
+      {
+        "frame_index": 0,
+        "pts": 1001,
+        "playback_time_s": 0,
+        "status": "selected",
+        "reason": null,
+        "keypoints": [
+          {
+            "name": "nose",
+            "x": 345.76639376843497,
+            "y": 457.8774703913269
+          },
+          {
+            "name": "left_eye",
+            "x": 355.6000028594583,
+            "y": 451.52611645462133
+          },
+          {
+            "name": "right_eye",
+            "x": 337.56393534888605,
+            "y": 454.55829268215183
+          },
+          {
+            "name": "left_ear",
+            "x": 359.55393259557746,
+            "y": 449.1597522049303
+          },
+          {
+            "name": "right_ear",
+            "x": 324.3290164675026,
+            "y": 453.22216110390195
+          },
+          {
+            "name": "left_shoulder",
+            "x": 353.86627773896475,
+            "y": 566.1242214703476
+          },
+          {
+            "name": "right_shoulder",
+            "x": 307.62396742974033,
+            "y": 568.9941411086065
+          },
+          {
+            "name": "left_elbow",
+            "x": 404.7768904834746,
+            "y": 683.7552872024094
+          },
+          {
+            "name": "right_elbow",
+            "x": 330.1845491465611,
+            "y": 697.8367108172544
+          },
+          {
+            "name": "left_wrist",
+            "x": 474.1061844136813,
+            "y": 686.2920059737125
+          },
+          {
+            "name": "right_wrist",
+            "x": 415.3707749774891,
+            "y": 698.4409875397666
+          },
+          {
+            "name": "left_hip",
+            "x": 344.61867240948106,
+            "y": 786.627398454097
+          },
+          {
+            "name": "right_hip",
+            "x": 306.98520756293675,
+            "y": 781.55856700466
+          },
+          {
+            "name": "left_knee",
+            "x": 374.93659883487425,
+            "y": 951.9506274279279
+          },
+          {
+            "name": "right_knee",
+            "x": 302.681711211773,
+            "y": 947.5697526897047
+          },
+          {
+            "name": "left_ankle",
+            "x": 387.12932682495784,
+            "y": 1118.4536618634995
+          },
+          {
+            "name": "right_ankle",
+            "x": 256.8280412689848,
+            "y": 1117.6982882363764
+          }
+        ]
+      },
+      {
+        "frame_index": 40,
+        "pts": 120962,
+        "playback_time_s": 1.3329000000000002,
+        "status": "selected",
+        "reason": null,
+        "keypoints": [
+          {
+            "name": "nose",
+            "x": 344.17040021064,
+            "y": 457.76531295096623
+          },
+          {
+            "name": "left_eye",
+            "x": 355.83901766044994,
+            "y": 453.8430430525176
+          },
+          {
+            "name": "right_eye",
+            "x": 337.87414667379903,
+            "y": 451.5065922019041
+          },
+          {
+            "name": "left_ear",
+            "x": 359.16854329445596,
+            "y": 452.79496984349447
+          },
+          {
+            "name": "right_ear",
+            "x": 329.3012885922057,
+            "y": 454.50224315044056
+          },
+          {
+            "name": "left_shoulder",
+            "x": 353.96730826991785,
+            "y": 567.683578021732
+          },
+          {
+            "name": "right_shoulder",
+            "x": 309.87300589320085,
+            "y": 566.0417834222042
+          },
+          {
+            "name": "left_elbow",
+            "x": 400.82490487715563,
+            "y": 674.204528753909
+          },
+          {
+            "name": "right_elbow",
+            "x": 324.9057781344163,
+            "y": 698.2401033034436
+          },
+          {
+            "name": "left_wrist",
+            "x": 473.4875833452094,
+            "y": 670.7157786202575
+          },
+          {
+            "name": "right_wrist",
+            "x": 402.7949354058163,
+            "y": 702.2530145016432
+          },
+          {
+            "name": "left_hip",
+            "x": 346.22149558355596,
+            "y": 784.3963572791956
+          },
+          {
+            "name": "right_hip",
+            "x": 308.9667164333739,
+            "y": 781.9013551528151
+          },
+          {
+            "name": "left_knee",
+            "x": 373.25891950407504,
+            "y": 951.7889687861942
+          },
+          {
+            "name": "right_knee",
+            "x": 299.57678593605215,
+            "y": 947.6220479093171
+          },
+          {
+            "name": "left_ankle",
+            "x": 388.57737955168295,
+            "y": 1113.875378462196
+          },
+          {
+            "name": "right_ankle",
+            "x": 259.80379212563014,
+            "y": 1116.4083676433208
+          }
+        ]
+      },
+      {
+        "frame_index": 80,
+        "pts": 241079,
+        "playback_time_s": 2.667533333333333,
+        "status": "selected",
+        "reason": null,
+        "keypoints": [
+          {
+            "name": "nose",
+            "x": 321.9201522972781,
+            "y": 507.32568335678695
+          },
+          {
+            "name": "left_eye",
+            "x": 332.77770438823063,
+            "y": 501.69164311415926
+          },
+          {
+            "name": "right_eye",
+            "x": 314.28294423778345,
+            "y": 501.44240270913775
+          },
+          {
+            "name": "left_ear",
+            "x": 338.0639320534404,
+            "y": 500.9016321331606
+          },
+          {
+            "name": "right_ear",
+            "x": 304.5434913785131,
+            "y": 498.8095758478286
+          },
+          {
+            "name": "left_shoulder",
+            "x": 332.8704338305075,
+            "y": 610.5230784478192
+          },
+          {
+            "name": "right_shoulder",
+            "x": 295.0663502047485,
+            "y": 621.2370763509966
+          },
+          {
+            "name": "left_elbow",
+            "x": 386.55385994224264,
+            "y": 500.2828633941331
+          },
+          {
+            "name": "right_elbow",
+            "x": 192.90531916702486,
+            "y": 598.7245579168609
+          },
+          {
+            "name": "left_wrist",
+            "x": 413.51854273915785,
+            "y": 370.8727762843599
+          },
+          {
+            "name": "right_wrist",
+            "x": 202.5150722846045,
+            "y": 543.7323818309644
+          },
+          {
+            "name": "left_hip",
+            "x": 312.75437106625577,
+            "y": 827.974896159153
+          },
+          {
+            "name": "right_hip",
+            "x": 283.017560674479,
+            "y": 824.6783861477257
+          },
+          {
+            "name": "left_knee",
+            "x": 382.80527512905445,
+            "y": 957.5432781973402
+          },
+          {
+            "name": "right_knee",
+            "x": 313.61386854458124,
+            "y": 966.59725057325
+          },
+          {
+            "name": "left_ankle",
+            "x": 375.58976430541463,
+            "y": 1118.032967405513
+          },
+          {
+            "name": "right_ankle",
+            "x": 249.9852128822588,
+            "y": 1114.1778792261
+          }
+        ]
+      },
+      {
+        "frame_index": 120,
+        "pts": 361293,
+        "playback_time_s": 4.003244444444444,
+        "status": "selected",
+        "reason": null,
+        "keypoints": [
+          {
+            "name": "nose",
+            "x": 440.07359429879676,
+            "y": 498.72624530174164
+          },
+          {
+            "name": "left_eye",
+            "x": 449.35846348940134,
+            "y": 488.5718943655723
+          },
+          {
+            "name": "right_eye",
+            "x": 433.15278212302906,
+            "y": 487.4118234685575
+          },
+          {
+            "name": "left_ear",
+            "x": 457.4767442470946,
+            "y": 486.61447457523604
+          },
+          {
+            "name": "right_ear",
+            "x": 424.47120642416684,
+            "y": 491.3502795643355
+          },
+          {
+            "name": "left_shoulder",
+            "x": 431.3098182400289,
+            "y": 599.5099481895691
+          },
+          {
+            "name": "right_shoulder",
+            "x": 439.89687531590806,
+            "y": 597.6577546386703
+          },
+          {
+            "name": "left_elbow",
+            "x": 411.246658107977,
+            "y": 685.9551211758226
+          },
+          {
+            "name": "right_elbow",
+            "x": 487.29430574300045,
+            "y": 719.7842887552362
+          },
+          {
+            "name": "left_wrist",
+            "x": 400.09763911988654,
+            "y": 736.8191566007255
+          },
+          {
+            "name": "right_wrist",
+            "x": 470.5120707264057,
+            "y": 815.6908152842468
+          },
+          {
+            "name": "left_hip",
+            "x": 397.7400812046927,
+            "y": 792.9396622510504
+          },
+          {
+            "name": "right_hip",
+            "x": 386.4793904654584,
+            "y": 795.3106480394114
+          },
+          {
+            "name": "left_knee",
+            "x": 437.8355019932153,
+            "y": 956.4778345855748
+          },
+          {
+            "name": "right_knee",
+            "x": 333.6209809003967,
+            "y": 923.2552226042598
+          },
+          {
+            "name": "left_ankle",
+            "x": 460.61510629726337,
+            "y": 1115.5534201996663
+          },
+          {
+            "name": "right_ankle",
+            "x": 280.71725370774345,
+            "y": 1062.5460263912348
+          }
+        ]
+      },
+      {
+        "frame_index": 160,
+        "pts": 481285,
+        "playback_time_s": 5.336488888888889,
+        "status": "selected",
+        "reason": null,
+        "keypoints": [
+          {
+            "name": "nose",
+            "x": 342.596210405034,
+            "y": 459.54586599054414
+          },
+          {
+            "name": "left_eye",
+            "x": 354.5338789014271,
+            "y": 453.423865199998
+          },
+          {
+            "name": "right_eye",
+            "x": 336.8302818493802,
+            "y": 450.6953424277658
+          },
+          {
+            "name": "left_ear",
+            "x": 360.8124312789953,
+            "y": 453.538902186197
+          },
+          {
+            "name": "right_ear",
+            "x": 326.20964208037816,
+            "y": 454.60325483887533
+          },
+          {
+            "name": "left_shoulder",
+            "x": 354.451936166429,
+            "y": 566.0542919079713
+          },
+          {
+            "name": "right_shoulder",
+            "x": 307.7324166168953,
+            "y": 569.1081113749156
+          },
+          {
+            "name": "left_elbow",
+            "x": 402.1475979797141,
+            "y": 684.3105018789486
+          },
+          {
+            "name": "right_elbow",
+            "x": 329.6340164630008,
+            "y": 697.6436674064313
+          },
+          {
+            "name": "left_wrist",
+            "x": 471.14671895385413,
+            "y": 685.2757390496312
+          },
+          {
+            "name": "right_wrist",
+            "x": 418.3677627631388,
+            "y": 700.6039416810228
+          },
+          {
+            "name": "left_hip",
+            "x": 342.6444758148129,
+            "y": 784.7239058157811
+          },
+          {
+            "name": "right_hip",
+            "x": 305.5240909186015,
+            "y": 785.7753938698247
+          },
+          {
+            "name": "left_knee",
+            "x": 370.94699529170686,
+            "y": 952.3732542807174
+          },
+          {
+            "name": "right_knee",
+            "x": 302.15288842588495,
+            "y": 950.474710367656
+          },
+          {
+            "name": "left_ankle",
+            "x": 387.85310186801786,
+            "y": 1114.6088634492382
+          },
+          {
+            "name": "right_ankle",
+            "x": 259.0871253575681,
+            "y": 1114.6365455548457
+          }
+        ]
+      }
+    ],
+    "capture": {
+      "state": "no_issue_detected",
+      "issues": []
+    },
+    "coverage": {
+      "frames_with_skeleton": 180,
+      "total_frames": 180
+    },
+    "evaluation": {
+      "status": "not_evaluated",
+      "reasons": [
+        "annotations_unreviewed"
+      ]
+    },
+    "provenance": {
+      "adapter": "simulado",
+      "adapter_version": "sem inferência",
+      "simulated": true
+    },
+    "frames_note": "Amostra: 1 a cada 40 quadros."
+  }
+}

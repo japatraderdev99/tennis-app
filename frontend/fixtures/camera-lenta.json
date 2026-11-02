@@ -1,0 +1,166 @@
+{
+  "notice": "Simulado para revisão de interface. Não contém atleta nem inferência de modelo.",
+  "scenario": "camera-lenta",
+  "situation": "O arquivo não traz um tempo confiável para cada quadro.",
+  "seed_options": {
+    "blocked": {
+      "code": "timing_unreliable",
+      "frame_index": null,
+      "end_frame_index": null,
+      "source_reasons": [
+        "missing_pts"
+      ]
+    },
+    "frames": []
+  },
+  "session_uploading": {
+    "session_id": "demo-session-1",
+    "created_at": "2025-11-11T22:26:40.000Z",
+    "is_demo": true,
+    "video": {
+      "title": "Saque em câmera lenta",
+      "source_name": "camera-lenta.mov",
+      "duration_seconds": 5.96765555555555
+    },
+    "asset_id": "sha256:893f8b525d5cd5ee9863da08d75b2b56a47af82f7a8960f8224ca4d3974344f6",
+    "asset_state": "importing",
+    "upload": {
+      "state": "sending",
+      "bytes_sent": 0,
+      "bytes_total": 96000000
+    },
+    "rejection": null,
+    "run": null,
+    "run_count": 0,
+    "capture": {
+      "state": "not_analyzable",
+      "issues": [
+        {
+          "code": "timing_unreliable",
+          "frame_index": null,
+          "end_frame_index": null,
+          "source_reasons": [
+            "missing_pts"
+          ]
+        }
+      ]
+    },
+    "report": null,
+    "deletion": "none"
+  },
+  "session": {
+    "session_id": "demo-session-1",
+    "created_at": "2025-11-11T22:26:40.000Z",
+    "is_demo": true,
+    "video": {
+      "title": "Saque em câmera lenta",
+      "source_name": "camera-lenta.mov",
+      "duration_seconds": 5.96765555555555
+    },
+    "asset_id": "sha256:893f8b525d5cd5ee9863da08d75b2b56a47af82f7a8960f8224ca4d3974344f6",
+    "asset_state": "ready",
+    "upload": {
+      "state": "done",
+      "bytes_sent": 96000000,
+      "bytes_total": 96000000
+    },
+    "rejection": null,
+    "run": null,
+    "run_count": 0,
+    "capture": {
+      "state": "not_analyzable",
+      "issues": [
+        {
+          "code": "timing_unreliable",
+          "frame_index": null,
+          "end_frame_index": null,
+          "source_reasons": [
+            "missing_pts"
+          ]
+        }
+      ]
+    },
+    "report": null,
+    "deletion": "none"
+  },
+  "replay_sample": {
+    "session_id": "demo-session-1",
+    "run_id": null,
+    "is_demo": true,
+    "asset_id": "sha256:893f8b525d5cd5ee9863da08d75b2b56a47af82f7a8960f8224ca4d3974344f6",
+    "time_base": "1/90000",
+    "display_width": 720,
+    "display_height": 1280,
+    "frames": [
+      {
+        "frame_index": 0,
+        "pts": null,
+        "playback_time_s": 0,
+        "status": "not_started",
+        "reason": "no_selection",
+        "keypoints": null
+      },
+      {
+        "frame_index": 40,
+        "pts": null,
+        "playback_time_s": 1.3322666666666663,
+        "status": "not_started",
+        "reason": "no_selection",
+        "keypoints": null
+      },
+      {
+        "frame_index": 80,
+        "pts": null,
+        "playback_time_s": 2.6677222222222228,
+        "status": "not_started",
+        "reason": "no_selection",
+        "keypoints": null
+      },
+      {
+        "frame_index": 120,
+        "pts": null,
+        "playback_time_s": 4.000144444444444,
+        "status": "not_started",
+        "reason": "no_selection",
+        "keypoints": null
+      },
+      {
+        "frame_index": 160,
+        "pts": null,
+        "playback_time_s": 5.335733333333329,
+        "status": "not_started",
+        "reason": "no_selection",
+        "keypoints": null
+      }
+    ],
+    "capture": {
+      "state": "not_analyzable",
+      "issues": [
+        {
+          "code": "timing_unreliable",
+          "frame_index": null,
+          "end_frame_index": null,
+          "source_reasons": [
+            "missing_pts"
+          ]
+        }
+      ]
+    },
+    "coverage": {
+      "frames_with_skeleton": 0,
+      "total_frames": 180
+    },
+    "evaluation": {
+      "status": "not_evaluated",
+      "reasons": [
+        "annotations_unreviewed"
+      ]
+    },
+    "provenance": {
+      "adapter": "simulado",
+      "adapter_version": "sem inferência",
+      "simulated": true
+    },
+    "frames_note": "Amostra: 1 a cada 40 quadros."
+  }
+}

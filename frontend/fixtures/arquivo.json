@@ -1,0 +1,64 @@
+{
+  "notice": "Simulado para revisão de interface. Não contém atleta nem inferência de modelo.",
+  "scenario": "arquivo",
+  "situation": "O vídeo é mais longo do que o limite aceito.",
+  "seed_options": {
+    "blocked": null,
+    "frames": []
+  },
+  "session_uploading": {
+    "session_id": "demo-session-1",
+    "created_at": "2025-11-15T09:46:40.000Z",
+    "is_demo": true,
+    "video": {
+      "title": "Treino inteiro, sem cortes",
+      "source_name": "treino-inteiro.mp4",
+      "duration_seconds": 5.9998777777777805
+    },
+    "asset_id": "sha256:1bd2fb80b75056b7ba286b158f05049634e845fed76dad3cdfb0c3b1a378bbd7",
+    "asset_state": "importing",
+    "upload": {
+      "state": "sending",
+      "bytes_sent": 0,
+      "bytes_total": 310000000
+    },
+    "rejection": null,
+    "run": null,
+    "run_count": 0,
+    "capture": null,
+    "report": null,
+    "deletion": "none"
+  },
+  "session": {
+    "session_id": "demo-session-1",
+    "created_at": "2025-11-15T09:46:40.000Z",
+    "is_demo": true,
+    "video": {
+      "title": "Treino inteiro, sem cortes",
+      "source_name": "treino-inteiro.mp4",
+      "duration_seconds": 5.9998777777777805
+    },
+    "asset_id": "sha256:1bd2fb80b75056b7ba286b158f05049634e845fed76dad3cdfb0c3b1a378bbd7",
+    "asset_state": "rejected",
+    "upload": {
+      "state": "done",
+      "bytes_sent": 310000000,
+      "bytes_total": 310000000
+    },
+    "rejection": {
+      "schema_version": "0.1.0",
+      "code": "duration_limit",
+      "message": "Demo: duração acima do limite técnico.",
+      "retryable": false,
+      "details": {
+        "limit": "max_duration_seconds",
+        "synthetic": true
+      }
+    },
+    "run": null,
+    "run_count": 0,
+    "capture": null,
+    "report": null,
+    "deletion": "none"
+  }
+}

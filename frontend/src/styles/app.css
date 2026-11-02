@@ -1,0 +1,412 @@
+/*
+ * Quadro: sistema visual do protótipo.
+ * Quadra rápida azul, linha pintada, bola amarela. A linha é o elemento único:
+ * é a lateral que organiza as telas e, na revisão, a linha do tempo do vídeo.
+ * Linha contínua = há esqueleto. Linha tracejada = não há.
+ */
+:root {
+  --quadra: #14408f;
+  --quadra-funda: #0c2a63;
+  --linha: #ffffff;
+  --bola: #e4f222;
+  --nevoa: #dce6f7;
+  --cone: #ffb26b;
+  --tinta: #0c2a63;
+  --palco: #000000;
+
+  --titulo: "Archivo Variable", "Arial Narrow", sans-serif;
+  --texto: "Atkinson Hyperlegible Next Variable", system-ui, sans-serif;
+
+  --t-corpo: 1.125rem;
+  --t-menor: 1rem;
+  --t-lead: 1.3125rem;
+  --t-titulo: clamp(2.75rem, 13vw, 3.5rem);
+  --t-tempo: 1.75rem;
+
+  --margem: 20px;
+  --recuo: 22px;
+  --traco: 4px;
+  --alvo: 48px;
+  --alvo-principal: 60px;
+
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--quadra-funda);
+  color: var(--linha);
+  font: 400 var(--t-corpo) / 1.45 var(--texto);
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--bola); outline-offset: 3px; }
+p { margin: 0; }
+
+/* Coluna do app. No computador continua sendo a largura de um celular. */
+.app {
+  max-width: 480px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--quadra);
+  display: flex;
+  flex-direction: column;
+}
+.aviso-demo {
+  background: var(--bola);
+  color: var(--tinta);
+  font-size: var(--t-menor);
+  font-weight: 700;
+  padding: 6px var(--margem);
+  padding-top: max(6px, env(safe-area-inset-top));
+}
+.tela {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px var(--margem) 0;
+  min-width: 0;
+}
+.tela:focus { outline: none; }
+
+/* Títulos: pintados na quadra, condensados e pesados. */
+.titulo {
+  font-family: var(--titulo);
+  font-stretch: 68%;
+  font-weight: 800;
+  font-size: var(--t-titulo);
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.titulo:focus { outline: none; }
+.titulo-compacto { font-size: 1.75rem; margin: 0 0 10px; }
+.subtitulo {
+  font-family: var(--titulo);
+  font-stretch: 75%;
+  font-weight: 700;
+  font-size: 1.625rem;
+  line-height: 1.1;
+  margin: 0 0 6px;
+}
+.lead { font-size: var(--t-lead); line-height: 1.35; margin-bottom: 20px; }
+.menor { font-size: var(--t-menor); color: var(--nevoa); }
+.voltar {
+  align-self: flex-start;
+  min-height: var(--alvo);
+  margin: -8px 0 4px -8px;
+  padding: 0 8px;
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: var(--t-menor);
+}
+
+/* A lateral: linha pintada de onde os itens saem em T. */
+.lateral {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  border-left: var(--traco) solid var(--linha);
+}
+.lateral > li {
+  position: relative;
+  padding: 2px 0 20px var(--recuo);
+}
+.lateral > li:last-child { padding-bottom: 2px; }
+.lateral > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 14px;
+  height: var(--traco);
+  background: var(--linha);
+}
+.lateral b { display: block; font-weight: 700; }
+
+/* Etapas: a linha só é contínua até onde o trabalho já chegou. */
+.etapas { border-left: 0; }
+.etapas > li { border-left: var(--traco) solid var(--linha); }
+.etapas > li[data-estado="pendente"] { border-left-style: dashed; color: var(--nevoa); }
+.etapas > li[data-estado="pendente"]::before { background: var(--nevoa); }
+.etapas > li[data-estado="agora"] { font-weight: 700; }
+.etapas > li[data-estado="agora"]::before { background: var(--bola); height: 8px; top: 11px; width: 18px; }
+.etapas .etapa-estado { display: block; font-weight: 400; font-size: var(--t-menor); color: var(--nevoa); }
+
+/* Ações presas ao polegar. */
+.acoes {
+  position: sticky;
+  bottom: 0;
+  margin: auto calc(var(--margem) * -1) 0;
+  padding: 14px var(--margem) max(16px, env(safe-area-inset-bottom));
+  background: var(--quadra);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+.btn {
+  min-height: var(--alvo-principal);
+  width: 100%;
+  border-radius: 12px;
+  border: 0;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 1.1875rem;
+  line-height: 1.2;
+  text-align: center;
+}
+.btn-principal { background: var(--bola); color: var(--tinta); }
+.btn-principal:disabled { background: transparent; color: var(--nevoa); box-shadow: inset 0 0 0 2px var(--nevoa); cursor: not-allowed; }
+.btn-secundario { background: transparent; color: var(--linha); box-shadow: inset 0 0 0 2px var(--linha); }
+.btn-texto {
+  min-height: var(--alvo);
+  background: none;
+  border: 0;
+  padding: 6px 12px;
+  width: 100%;
+  font-weight: 400;
+  font-size: var(--t-corpo);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Detalhes sob demanda. */
+.detalhe { border-top: 2px solid rgba(255, 255, 255, 0.4); }
+.detalhe:last-of-type { border-bottom: 2px solid rgba(255, 255, 255, 0.4); }
+.detalhe > summary {
+  min-height: var(--alvo);
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  font-weight: 700;
+  cursor: pointer;
+}
+.detalhe > div { padding: 0 0 16px; display: grid; gap: 10px; }
+.detalhes { margin-bottom: 20px; }
+.dados { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 0; }
+.dados dt { font-size: var(--t-menor); color: var(--nevoa); }
+.dados dd { margin: 0; overflow-wrap: anywhere; }
+
+/* Bloco de problema de filmagem: a única superfície laranja do app. */
+.problema {
+  background: var(--cone);
+  color: var(--tinta);
+  border-radius: 12px;
+  padding: 14px 16px 16px;
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.problema h2 {
+  font-family: var(--titulo);
+  font-stretch: 75%;
+  font-weight: 800;
+  font-size: 1.625rem;
+  line-height: 1.08;
+  margin: 0;
+}
+.problema .acao-filmar { font-weight: 700; }
+.problema .btn-principal { background: var(--tinta); color: var(--linha); margin-top: 8px; }
+.problema .btn-link {
+  justify-self: start;
+  min-height: var(--alvo);
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--tinta);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Dois estados, sempre com rótulo: processamento não é qualidade da filmagem. */
+.estados { display: grid; gap: 10px; margin: 0 0 16px; }
+.estados div { display: grid; gap: 0; }
+.estados dt { font-size: var(--t-menor); color: var(--nevoa); }
+.estados dd { margin: 0; font-weight: 700; }
+
+/* Barra de envio: aqui a porcentagem é real, conta bytes. */
+.envio { height: 12px; background: rgba(255, 255, 255, 0.25); margin: 8px 0 8px; }
+.envio > i { display: block; height: 100%; background: var(--linha); }
+
+/* Palco do vídeo */
+.palco-sangria { margin: -20px calc(var(--margem) * -1) 0; background: var(--palco); }
+.palco {
+  position: relative;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 58dvh;
+  background: var(--palco);
+}
+.palco canvas { display: block; width: 100%; height: 100%; }
+
+/* Seleção do jogador */
+.caixa {
+  position: absolute;
+  padding: 0;
+  background: transparent;
+  border: 3px solid var(--linha);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.75), inset 0 0 0 2px rgba(0, 0, 0, 0.75);
+  border-radius: 6px;
+  min-width: var(--alvo);
+  min-height: var(--alvo);
+}
+.caixa[aria-pressed="true"] { border-color: var(--bola); border-width: 5px; background: rgba(228, 242, 34, 0.18); }
+.caixa > span {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  padding: 2px 10px;
+  background: var(--linha);
+  color: var(--tinta);
+  font-weight: 700;
+  font-size: var(--t-menor);
+  white-space: nowrap;
+}
+.caixa[aria-pressed="true"] > span { background: var(--bola); }
+
+/* Linha do tempo: a lateral deitada. */
+.controles { background: var(--quadra-funda); margin: 0 calc(var(--margem) * -1) 16px; padding: 10px var(--margem) 12px; }
+.tempo-linha { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.tempo {
+  font-family: var(--titulo);
+  font-stretch: 75%;
+  font-weight: 700;
+  font-size: var(--t-tempo);
+  font-variant-numeric: tabular-nums;
+}
+.trilho { position: relative; height: 48px; margin: 2px 0 6px; }
+.trilho-seg { position: absolute; top: 22px; height: var(--traco); }
+.trilho-seg[data-com="sim"] { background: var(--linha); }
+.trilho-seg[data-com="nao"] {
+  background: repeating-linear-gradient(90deg, var(--cone) 0 6px, transparent 6px 12px);
+}
+.trilho-marca { position: absolute; top: 12px; width: 6px; height: 24px; margin-left: -3px; background: var(--bola); box-shadow: 0 0 0 2px var(--tinta); pointer-events: none; }
+.trilho input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 48px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.trilho input:focus-visible + .trilho-marca { outline: 3px solid var(--bola); outline-offset: 3px; }
+.legenda-trilho { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: var(--t-menor); color: var(--nevoa); margin-bottom: 10px; }
+.legenda-trilho i { display: inline-block; width: 22px; height: 4px; vertical-align: middle; margin-right: 6px; }
+.legenda-trilho .l-com { background: var(--linha); }
+.legenda-trilho .l-sem { background: repeating-linear-gradient(90deg, var(--cone) 0 5px, transparent 5px 9px); }
+.botoes-video { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 8px; }
+.botoes-video button, .botoes-extra button {
+  min-height: var(--alvo-principal);
+  background: transparent;
+  border: 2px solid var(--linha);
+  border-radius: 12px;
+  padding: 6px;
+  font-weight: 700;
+  font-size: var(--t-menor);
+  line-height: 1.15;
+}
+.botoes-video .tocar { background: var(--bola); border-color: var(--bola); color: var(--tinta); font-size: 1.1875rem; }
+.botoes-extra { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.botoes-extra button { min-height: var(--alvo); }
+.botoes-extra button[aria-pressed="false"] { border-style: dashed; }
+
+/* Histórico */
+.sessoes { list-style: none; margin: 0 0 16px; padding: 0; border-left: var(--traco) solid var(--linha); }
+.sessoes > li { position: relative; padding: 0 0 14px var(--recuo); }
+.sessoes > li::before { content: ""; position: absolute; left: 0; top: 36px; width: 14px; height: var(--traco); background: var(--linha); }
+.sessao {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 12px;
+  width: 100%;
+  min-height: 92px;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  align-items: start;
+}
+.sessao canvas { width: 76px; height: 76px; object-fit: cover; display: block; background: var(--palco); }
+.sessao b { display: block; line-height: 1.2; }
+.sessao .linha-estado { display: block; font-size: var(--t-menor); color: var(--nevoa); line-height: 1.25; margin-top: 2px; }
+.sessao .linha-filmagem { display: block; font-size: var(--t-menor); line-height: 1.25; margin-top: 2px; }
+
+/* Galeria simulada */
+.videos { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px; }
+.video-opcao {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-radius: 12px;
+  text-align: left;
+}
+.video-opcao[aria-pressed="true"] { border: 4px solid var(--bola); padding: 6px; }
+.video-opcao canvas { width: 72px; height: 72px; display: block; background: var(--palco); }
+.video-opcao b { display: block; line-height: 1.2; }
+.video-opcao span { display: block; font-size: var(--t-menor); color: var(--nevoa); line-height: 1.3; margin-top: 2px; }
+.video-opcao .recomendado { color: var(--bola); font-weight: 700; }
+
+/* Diagrama de captura */
+.diagrama { display: block; width: 100%; max-width: 340px; height: auto; margin: 0 0 18px; }
+
+/* Abertura: a demonstração é o herói. */
+.heroi { margin: -20px calc(var(--margem) * -1) 20px; background: var(--palco); }
+.heroi .palco { max-height: 40dvh; }
+
+/* Diálogo de exclusão */
+.dialogo {
+  border: 0;
+  border-radius: 20px 20px 0 0;
+  margin: auto auto 0;
+  width: 100%;
+  max-width: 480px;
+  background: var(--linha);
+  color: var(--tinta);
+  padding: 22px var(--margem) max(20px, env(safe-area-inset-bottom));
+}
+.dialogo::backdrop { background: rgba(4, 14, 36, 0.72); }
+.dialogo h2 { font-family: var(--titulo); font-stretch: 75%; font-weight: 800; font-size: 2rem; line-height: 1.05; margin: 0 0 10px; }
+.dialogo ul { margin: 0 0 12px; padding-left: 20px; }
+.dialogo .btn-principal { background: var(--tinta); color: var(--linha); margin-top: 12px; }
+.dialogo .btn-texto { color: var(--tinta); }
+.dialogo:focus-visible, .dialogo :focus-visible { outline-color: var(--tinta); }
+
+/* Laboratório de estados */
+.lab-grupo { margin: 0 0 18px; }
+.lab-grupo button {
+  display: block;
+  width: 100%;
+  min-height: var(--alvo);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  text-align: left;
+  padding: 10px 0;
+}
+
+.so-leitor { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (orientation: landscape) and (max-height: 520px) {
+  /* Celular deitado: a coluna abre para o vídeo aproveitar a largura. */
+  .app { max-width: none; }
+  .palco { max-height: 82dvh; }
+  .heroi .palco { max-height: 70dvh; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn:active, .botoes-video button:active { transform: translateY(1px); }
+  .etapas > li[data-estado="agora"]::before { animation: pulso 1.4s ease-in-out infinite; }
+}
+@keyframes pulso { 50% { width: 26px; } }

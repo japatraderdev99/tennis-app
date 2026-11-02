@@ -1,0 +1,41 @@
+{
+  "notice": "Simulado para revisão de interface. Não contém atleta nem inferência de modelo.",
+  "scenarios": [
+    {
+      "scenario": "limpo",
+      "file": "limpo.json"
+    },
+    {
+      "scenario": "perda",
+      "file": "perda.json"
+    },
+    {
+      "scenario": "cruzamento",
+      "file": "cruzamento.json"
+    },
+    {
+      "scenario": "pes",
+      "file": "pes.json"
+    },
+    {
+      "scenario": "longe",
+      "file": "longe.json"
+    },
+    {
+      "scenario": "camera-lenta",
+      "file": "camera-lenta.json"
+    },
+    {
+      "scenario": "falha",
+      "file": "falha.json"
+    },
+    {
+      "scenario": "arquivo",
+      "file": "arquivo.json"
+    },
+    {
+      "scenario": "conexao",
+      "file": "conexao.json"
+    }
+  ]
+}
