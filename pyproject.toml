@@ -9,6 +9,16 @@ description = "Local, research-only foundation for traceable tennis video analys
 requires-python = ">=3.12,<3.14"
 dependencies = ["pydantic>=2.13.5,<3"]
 
+[project.optional-dependencies]
+pose = [
+  "mediapipe==1.2.0",
+  "rtmlib==0.0.16",
+  "onnxruntime==1.31.1",
+  "numpy==2.5.4",
+  "opencv-python==5.0.0.93",
+  "opencv-contrib-python==5.0.0.93",
+]
+
 [dependency-groups]
 dev = ["pytest>=8.3.4,<9", "jsonschema>=4.23,<5"]
 
