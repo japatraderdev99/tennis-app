@@ -263,6 +263,41 @@ def test_reference_movie_rejected(tmp_path):
     assert caught.value.code == "external_reference"
 
 
+def test_quicktime_empty_self_reference_preserves_source_timeline(make_video):
+    path = make_video("self-reference.mov")
+    expected = inspect_media(path)
+    data = bytearray(path.read_bytes())
+    marker = data.index(b"url ")
+    data[marker:marker + 4] = b"alis"
+    path.write_bytes(data)
+    result = inspect_media(path)
+    assert result["frames"] == expected["frames"]
+    assert result["time_base"] == expected["time_base"]
+    assert result["sha256"] == hashlib.sha256(data).hexdigest()
+    assert path.read_bytes() == data
+
+
+@pytest.mark.parametrize("kind,version,flags,payload", [
+    (b"alis", 0, 0, b""),
+    (b"alis", 0, 1, b"private-file.mov"),
+    (b"alis", 0, 3, b""),
+    (b"alis", 1, 1, b""),
+    (b"url ", 1, 1, b""),
+    (b"urn ", 0, 1, b""),
+])
+def test_unsupported_dref_never_reaches_native_decoder(tmp_path, monkeypatch,
+                                                     kind, version, flags, payload):
+    entry = (struct.pack(">I4sB", 12 + len(payload), kind, version)
+             + flags.to_bytes(3, "big") + payload)
+    dref = struct.pack(">I4sII", 16 + len(entry), b"dref", 0, 1) + entry
+    path = tmp_path / "reference.mov"
+    path.write_bytes(struct.pack(">I4s", 8 + len(dref), b"moov") + dref)
+    monkeypatch.setattr(_inspect.subprocess, "Popen", lambda *a, **kw: pytest.fail("native process started"))
+    with pytest.raises(MediaError) as caught:
+        inspect_media(path)
+    assert caught.value.code == "external_reference"
+
+
 def test_matroska_external_segment_link_rejected(tmp_path):
     path = tmp_path / "linked.mkv"
     path.write_bytes(bytes.fromhex("1a45dfa38018538067891549a966843cb92380"))

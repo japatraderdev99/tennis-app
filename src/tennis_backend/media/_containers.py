@@ -87,9 +87,11 @@ def _check_mov(fd: int, size: int, check_time: Callable[[], None]) -> None:
                     flags = int.from_bytes(entry[9:12], "big")
                     if entry_size < 12 or cursor + entry_size > stop:
                         _invalid()
-                    # Self-contained URL with flag 1 has no location payload.
-                    # URNs, aliases and every external URL are rejected.
-                    if entry_kind != b"url " or flags != 1 or entry_size != 12:
+                    # QuickTime also uses an empty 'alis' entry for this file.
+                    # Accept only version 0, self-reference flag 1, no payload.
+                    # External aliases/URLs, URNs and unknown versions stay closed.
+                    if (entry_kind not in {b"url ", b"alis"} or entry[8] != 0
+                            or flags != 1 or entry_size != 12):
                         _external()
                     cursor += entry_size
                 if cursor != stop:
