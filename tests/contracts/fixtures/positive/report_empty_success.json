@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1.0",
+  "report_id": "demo-report",
+  "session_id": "demo-session",
+  "run_id": "demo-run",
+  "asset_id": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "is_demo": true,
+  "execution": {
+    "state": "succeeded"
+  },
+  "metrics": [],
+  "comparison": {
+    "state": "not_evaluated",
+    "delta": null,
+    "reason": "No validated history."
+  },
+  "message": "Synthetic landmarks only; no pose inference or biomechanical validation.",
+  "error": null
+}

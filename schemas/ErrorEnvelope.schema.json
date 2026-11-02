@@ -1,0 +1,45 @@
+{
+  "$defs": {
+    "JsonValue": {}
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "code": {
+      "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+      "title": "Code",
+      "type": "string"
+    },
+    "message": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Message",
+      "type": "string"
+    },
+    "retryable": {
+      "title": "Retryable",
+      "type": "boolean"
+    },
+    "details": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "title": "Details",
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "code",
+    "message",
+    "retryable",
+    "details"
+  ],
+  "title": "ErrorEnvelope",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

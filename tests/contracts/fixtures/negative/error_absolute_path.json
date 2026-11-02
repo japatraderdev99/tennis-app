@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1.0",
+  "code": "inspection_failed",
+  "message": "Cannot open /Users/synthetic/private.mp4",
+  "retryable": false,
+  "details": {
+    "stage": "inspection",
+    "synthetic": true,
+    "limits": [
+      1,
+      null,
+      {
+        "seconds": 2.5
+      }
+    ]
+  }
+}

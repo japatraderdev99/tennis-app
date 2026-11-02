@@ -1,0 +1,366 @@
+[
+  {
+    "file": "positive/media.json",
+    "model": "MediaManifest",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Nonzero starting PTS and irregular intervals."
+  },
+  {
+    "file": "positive/research_input.json",
+    "model": "ResearchInput",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Synthetic coordinates may be outside display bounds."
+  },
+  {
+    "file": "positive/research_result.json",
+    "model": "ResearchResult",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Peak tie selects earliest PTS; internal values only."
+  },
+  {
+    "file": "positive/public_report.json",
+    "model": "PublicReport",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Public value is null despite a computed research artifact."
+  },
+  {
+    "file": "positive/error.json",
+    "model": "ErrorEnvelope",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Sanitized synthetic error with nested finite JSON details."
+  },
+  {
+    "file": "positive/media_missing_pts.json",
+    "model": "MediaManifest",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Missing original PTS remains inspectable with explicit reason."
+  },
+  {
+    "file": "positive/media_nonmonotonic.json",
+    "model": "MediaManifest",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Nonmonotonic timeline remains inspectable; research input rejects it."
+  },
+  {
+    "file": "positive/input_partial.json",
+    "model": "ResearchInput",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Missing observation is representable for insufficient_evidence processing."
+  },
+  {
+    "file": "positive/input_missing_point.json",
+    "model": "ResearchInput",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Null point is inadequate evidence, not malformed structure."
+  },
+  {
+    "file": "positive/input_degenerate.json",
+    "model": "ResearchInput",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Degenerate segment is representable; metrics must reject the attempt."
+  },
+  {
+    "file": "positive/result_partial.json",
+    "model": "ResearchResult",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Partial series preserves usable samples alongside explicit missing evidence."
+  },
+  {
+    "file": "positive/report_insufficient.json",
+    "model": "PublicReport",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Successful execution can have no computationally usable attempt."
+  },
+  {
+    "file": "positive/report_unsupported.json",
+    "model": "PublicReport",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Unsupported status has no public numeric value."
+  },
+  {
+    "file": "positive/report_empty_success.json",
+    "model": "PublicReport",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Successful execution may contain no metrics."
+  },
+  {
+    "file": "positive/report_failed.json",
+    "model": "PublicReport",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Failed execution requires an error and no metrics."
+  },
+  {
+    "file": "positive/report_cancelled.json",
+    "model": "PublicReport",
+    "valid": true,
+    "schema_valid": true,
+    "note": "Cancelled execution has neither metrics nor error."
+  },
+  {
+    "file": "negative/media_asset_mismatch.json",
+    "model": "MediaManifest",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Python checks asset_id against the hash."
+  },
+  {
+    "file": "negative/media_boolean_integer.json",
+    "model": "MediaManifest",
+    "valid": false,
+    "schema_valid": false,
+    "note": "A JSON boolean is not an integer."
+  },
+  {
+    "file": "negative/media_float_integer.json",
+    "model": "MediaManifest",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Strict Pydantic rejects 128.0; JSON Schema integer is mathematical."
+  },
+  {
+    "file": "negative/media_path.json",
+    "model": "MediaManifest",
+    "valid": false,
+    "schema_valid": false,
+    "note": "source_name must be basename only."
+  },
+  {
+    "file": "negative/media_zero_denominator.json",
+    "model": "MediaManifest",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Time base has a nonzero denominator."
+  },
+  {
+    "file": "negative/media_negative_timebase.json",
+    "model": "MediaManifest",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Time base must be positive."
+  },
+  {
+    "file": "negative/media_guessed_time.json",
+    "model": "MediaManifest",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Nominal FPS cannot replace PTS time."
+  },
+  {
+    "file": "negative/media_unmarked_missing.json",
+    "model": "MediaManifest",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Missing PTS requires a global reason."
+  },
+  {
+    "file": "negative/input_pts_mismatch.json",
+    "model": "ResearchInput",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Observation PTS must resolve to its timeline frame."
+  },
+  {
+    "file": "negative/input_duplicate_observation.json",
+    "model": "ResearchInput",
+    "valid": false,
+    "schema_valid": true,
+    "note": "No duplicate observation frame references."
+  },
+  {
+    "file": "negative/input_unknown_frame.json",
+    "model": "ResearchInput",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Observations cannot reference a frame outside the timeline."
+  },
+  {
+    "file": "negative/input_nonmonotonic.json",
+    "model": "ResearchInput",
+    "valid": false,
+    "schema_valid": true,
+    "note": "A research timeline must have strictly increasing PTS."
+  },
+  {
+    "file": "negative/input_phase_unknown.json",
+    "model": "ResearchInput",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Phase endpoints must coincide with timeline entries."
+  },
+  {
+    "file": "negative/input_one_phase_frame.json",
+    "model": "ResearchInput",
+    "valid": false,
+    "schema_valid": true,
+    "note": "A phase needs at least two frames."
+  },
+  {
+    "file": "negative/result_later_tie.json",
+    "model": "ResearchResult",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Earliest PTS wins a peak tie."
+  },
+  {
+    "file": "negative/result_wrong_peak.json",
+    "model": "ResearchResult",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Peak value must agree with raw series."
+  },
+  {
+    "file": "negative/result_wrong_evidence_pts.json",
+    "model": "ResearchResult",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Evidence frame and PTS must identify the same peak series entry."
+  },
+  {
+    "file": "negative/result_out_of_range.json",
+    "model": "ResearchResult",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Projected flexion is bounded to [0,180]."
+  },
+  {
+    "file": "negative/result_null_without_reason.json",
+    "model": "ResearchResult",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Null series sample requires a reason."
+  },
+  {
+    "file": "negative/result_number_with_reason.json",
+    "model": "ResearchResult",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Numeric series samples cannot carry failure reasons."
+  },
+  {
+    "file": "negative/result_insufficient_numeric.json",
+    "model": "ResearchResult",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Insufficient result cannot retain the computed value/evidence."
+  },
+  {
+    "file": "negative/result_global_reason.json",
+    "model": "ResearchResult",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Computed result has no global quality reason."
+  },
+  {
+    "file": "negative/public_numeric_leak.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Public numeric values are always forbidden."
+  },
+  {
+    "file": "negative/public_reportable.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": false,
+    "note": "No reportable status exists in v0."
+  },
+  {
+    "file": "negative/public_bad_counts.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Python checks valid + rejected = total."
+  },
+  {
+    "file": "negative/public_wrong_asset.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Evidence asset must match its containing report."
+  },
+  {
+    "file": "negative/public_missing_evidence.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Research-only requires evidence."
+  },
+  {
+    "file": "negative/public_failed_metrics.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Failed reports cannot contain metrics."
+  },
+  {
+    "file": "negative/public_failed_no_error.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Failed execution requires an error envelope."
+  },
+  {
+    "file": "negative/public_success_error.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Succeeded execution cannot contain an error."
+  },
+  {
+    "file": "negative/public_coerced_bool.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": false,
+    "note": "String booleans must not be coerced."
+  },
+  {
+    "file": "negative/error_extra.json",
+    "model": "ErrorEnvelope",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Unknown fields are rejected."
+  },
+  {
+    "file": "negative/error_bad_reason_code.json",
+    "model": "ErrorEnvelope",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Error/reason codes use stable snake_case."
+  },
+  {
+    "file": "negative/error_absolute_path.json",
+    "model": "ErrorEnvelope",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Python rejects recognizable absolute local paths in error text."
+  },
+  {
+    "file": "negative/error_raw_stderr.json",
+    "model": "ErrorEnvelope",
+    "valid": false,
+    "schema_valid": true,
+    "note": "Python rejects nonempty raw stderr string fields in error details."
+  },
+  {
+    "file": "negative/error_missing_nullable.json",
+    "model": "PublicReport",
+    "valid": false,
+    "schema_valid": false,
+    "note": "Nullable fields are still required."
+  }
+]

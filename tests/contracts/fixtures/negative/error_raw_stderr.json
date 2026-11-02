@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1.0",
+  "code": "inspection_failed",
+  "message": "Synthetic inspection failed.",
+  "retryable": false,
+  "details": {
+    "stderr": "synthetic raw command dump"
+  }
+}

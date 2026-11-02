@@ -1,0 +1,258 @@
+{
+  "$defs": {
+    "MediaFrame": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "time_seconds": {
+                "type": "number"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "pts": {
+                "type": "null"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "time_seconds": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "frame_index": {
+          "minimum": 0,
+          "title": "Frame Index",
+          "type": "integer"
+        },
+        "pts": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pts"
+        },
+        "time_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Time Seconds"
+        }
+      },
+      "required": [
+        "frame_index",
+        "pts",
+        "time_seconds"
+      ],
+      "title": "MediaFrame",
+      "type": "object"
+    },
+    "ProbeTool": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "const": "ffprobe",
+          "title": "Name",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version"
+      ],
+      "title": "ProbeTool",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "asset_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Asset Id",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Sha256",
+      "type": "string"
+    },
+    "byte_size": {
+      "exclusiveMinimum": 0,
+      "title": "Byte Size",
+      "type": "integer"
+    },
+    "source_name": {
+      "minLength": 1,
+      "pattern": "^[^/\\\\\\x00]+$",
+      "title": "Source Name",
+      "type": "string"
+    },
+    "stream_index": {
+      "minimum": 0,
+      "title": "Stream Index",
+      "type": "integer"
+    },
+    "codec_name": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Codec Name",
+      "type": "string"
+    },
+    "coded_width": {
+      "exclusiveMinimum": 0,
+      "title": "Coded Width",
+      "type": "integer"
+    },
+    "coded_height": {
+      "exclusiveMinimum": 0,
+      "title": "Coded Height",
+      "type": "integer"
+    },
+    "sample_aspect_ratio": {
+      "anyOf": [
+        {
+          "pattern": "^[+-]?[0-9]+/[+-]?0*[1-9][0-9]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Sample Aspect Ratio"
+    },
+    "rotation_degrees": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Rotation Degrees"
+    },
+    "time_base": {
+      "pattern": "^(?:[+]?0*[1-9][0-9]*/[+]?0*[1-9][0-9]*|-0*[1-9][0-9]*/-0*[1-9][0-9]*)$",
+      "title": "Time Base",
+      "type": "string"
+    },
+    "duration_seconds": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Duration Seconds"
+    },
+    "nominal_fps": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Nominal Fps"
+    },
+    "average_fps": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Average Fps"
+    },
+    "frames": {
+      "items": {
+        "$ref": "#/$defs/MediaFrame"
+      },
+      "title": "Frames",
+      "type": "array"
+    },
+    "quality_reasons": {
+      "items": {
+        "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "title": "Quality Reasons",
+      "type": "array"
+    },
+    "timing_basis": {
+      "const": "original_pts",
+      "title": "Timing Basis",
+      "type": "string"
+    },
+    "temporal_resolution": {
+      "const": "not_established",
+      "title": "Temporal Resolution",
+      "type": "string"
+    },
+    "tool": {
+      "$ref": "#/$defs/ProbeTool"
+    }
+  },
+  "required": [
+    "schema_version",
+    "asset_id",
+    "sha256",
+    "byte_size",
+    "source_name",
+    "stream_index",
+    "codec_name",
+    "coded_width",
+    "coded_height",
+    "sample_aspect_ratio",
+    "rotation_degrees",
+    "time_base",
+    "duration_seconds",
+    "nominal_fps",
+    "average_fps",
+    "frames",
+    "quality_reasons",
+    "timing_basis",
+    "temporal_resolution",
+    "tool"
+  ],
+  "title": "MediaManifest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

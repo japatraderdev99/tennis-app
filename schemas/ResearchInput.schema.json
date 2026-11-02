@@ -1,0 +1,242 @@
+{
+  "$defs": {
+    "FrameReference": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_index": {
+          "minimum": 0,
+          "title": "Frame Index",
+          "type": "integer"
+        },
+        "pts": {
+          "title": "Pts",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "frame_index",
+        "pts"
+      ],
+      "title": "FrameReference",
+      "type": "object"
+    },
+    "Observation": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_index": {
+          "minimum": 0,
+          "title": "Frame Index",
+          "type": "integer"
+        },
+        "pts": {
+          "title": "Pts",
+          "type": "integer"
+        },
+        "hip": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "knee": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ankle": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "frame_index",
+        "pts",
+        "hip",
+        "knee",
+        "ankle"
+      ],
+      "title": "Observation",
+      "type": "object"
+    },
+    "PhaseWindow": {
+      "additionalProperties": false,
+      "properties": {
+        "start_pts": {
+          "title": "Start Pts",
+          "type": "integer"
+        },
+        "end_pts": {
+          "title": "End Pts",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_pts",
+        "end_pts"
+      ],
+      "title": "PhaseWindow",
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Point",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "synthetic",
+            "manual"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "protocol_id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Protocol Id",
+          "type": "string"
+        },
+        "annotation_ref": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Annotation Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "protocol_id",
+        "annotation_ref"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "asset_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "title": "Asset Id",
+      "type": "string"
+    },
+    "time_base": {
+      "pattern": "^(?:[+]?0*[1-9][0-9]*/[+]?0*[1-9][0-9]*|-0*[1-9][0-9]*/-0*[1-9][0-9]*)$",
+      "title": "Time Base",
+      "type": "string"
+    },
+    "display_width": {
+      "exclusiveMinimum": 0,
+      "title": "Display Width",
+      "type": "integer"
+    },
+    "display_height": {
+      "exclusiveMinimum": 0,
+      "title": "Display Height",
+      "type": "integer"
+    },
+    "coordinate_space": {
+      "const": "display_pixels",
+      "title": "Coordinate Space",
+      "type": "string"
+    },
+    "transforms": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "title": "Transforms",
+      "type": "array"
+    },
+    "body_side": {
+      "enum": [
+        "left",
+        "right"
+      ],
+      "title": "Body Side",
+      "type": "string"
+    },
+    "phase_id": {
+      "const": "serve_preparation",
+      "title": "Phase Id",
+      "type": "string"
+    },
+    "phase_window": {
+      "$ref": "#/$defs/PhaseWindow"
+    },
+    "timeline": {
+      "items": {
+        "$ref": "#/$defs/FrameReference"
+      },
+      "minItems": 2,
+      "title": "Timeline",
+      "type": "array"
+    },
+    "observations": {
+      "items": {
+        "$ref": "#/$defs/Observation"
+      },
+      "title": "Observations",
+      "type": "array"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    }
+  },
+  "required": [
+    "schema_version",
+    "asset_id",
+    "time_base",
+    "display_width",
+    "display_height",
+    "coordinate_space",
+    "transforms",
+    "body_side",
+    "phase_id",
+    "phase_window",
+    "timeline",
+    "observations",
+    "provenance"
+  ],
+  "title": "ResearchInput",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

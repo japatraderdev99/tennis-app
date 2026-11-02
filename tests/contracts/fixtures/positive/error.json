@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1.0",
+  "code": "inspection_failed",
+  "message": "Synthetic inspection failed.",
+  "retryable": false,
+  "details": {
+    "stage": "inspection",
+    "synthetic": true,
+    "limits": [
+      1,
+      null,
+      {
+        "seconds": 2.5
+      }
+    ]
+  }
+}
