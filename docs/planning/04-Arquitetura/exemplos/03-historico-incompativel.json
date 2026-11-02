@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1-draft",
+  "is_demo": true,
+  "notice": "Fixture simulada para revisão de estados; não contém medição de atleta.",
+  "session_id": "demo-session-001",
+  "execution": {
+    "state": "succeeded"
+  },
+  "report": {
+    "replay_available": true,
+    "metrics": []
+  },
+  "comparison": {
+    "state": "incompatible",
+    "delta": null,
+    "reason_codes": [
+      "capture_view_changed"
+    ],
+    "message": "As posições de câmera são diferentes. Repita a posição anterior para comparar."
+  }
+}

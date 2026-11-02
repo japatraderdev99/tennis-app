@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1-draft",
+  "is_demo": true,
+  "notice": "Fixture simulada para revisão de estados; não contém medição de atleta.",
+  "session_id": "demo-session-001",
+  "execution": {
+    "state": "succeeded"
+  },
+  "report": {
+    "replay_available": true,
+    "metrics": [
+      {
+        "metric_id": "front_knee_projected_flexion_peak",
+        "definition_version": "0.1-draft",
+        "status": "research_only",
+        "value": null,
+        "unit": "deg",
+        "measurement_space": "image_2d_projected",
+        "validation_ref": null,
+        "uncertainty": {
+          "status": "not_established"
+        },
+        "quality_reasons": [],
+        "evidence": []
+      }
+    ],
+    "message": "Você pode rever a preparação. A medição ainda está em validação."
+  },
+  "comparison": {
+    "state": "insufficient_history",
+    "delta": null
+  }
+}

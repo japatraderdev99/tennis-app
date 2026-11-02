@@ -4,6 +4,12 @@ Read `docs/CONTRACTS_V0.md` and your assignment in `docs/OPERATIONS.md` first.
 This is a local research backend. Gabriel authorized implementation and parallel
 branches on 2026-11-01. UX/UI/frontend belong to Claude in a later wave.
 
+Gabriel also authorized commit/push to `japatraderdev99/tennis-app` on 2026-11-01.
+The head owns publication. The builder restrictions below still apply to assigned
+implementation chats. Do not interpret them as blocking the head's authorized push.
+`docs/planning/` is a generated portable mirror of selected approved vault notes;
+edit the canonical vault and regenerate it via `scripts/export_planning.py`.
+
 ## Isolation and ownership
 
 - Work only in the assigned checkout and branch. Use explicit command workdir.

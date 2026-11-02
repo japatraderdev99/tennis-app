@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1-draft",
+  "is_demo": true,
+  "notice": "Fixture simulada para revisão de estados; não contém medição de atleta.",
+  "session_id": "demo-session-001",
+  "execution": {
+    "state": "succeeded"
+  },
+  "report": {
+    "replay_available": true,
+    "metrics": [
+      {
+        "metric_id": "front_knee_projected_flexion_peak",
+        "status": "insufficient_evidence",
+        "value": null,
+        "unit": "deg",
+        "quality_reasons": [
+          "ankle_out_of_frame"
+        ],
+        "evidence": []
+      }
+    ],
+    "message": "O tornozelo ficou fora da imagem. Afaste um pouco o celular e faça um teste curto."
+  },
+  "comparison": {
+    "state": "insufficient_history",
+    "delta": null
+  }
+}

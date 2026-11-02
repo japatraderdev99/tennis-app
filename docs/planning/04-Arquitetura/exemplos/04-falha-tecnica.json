@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1-draft",
+  "is_demo": true,
+  "notice": "Fixture simulada para revisão de estados; não contém medição de atleta.",
+  "session_id": "demo-session-001",
+  "execution": {
+    "state": "failed",
+    "error": {
+      "code": "decode_failed",
+      "retryable": false,
+      "request_id": "demo-request-004"
+    }
+  },
+  "report": null,
+  "comparison": {
+    "state": "insufficient_history",
+    "delta": null
+  }
+}

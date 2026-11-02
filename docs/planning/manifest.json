@@ -1,0 +1,136 @@
+{
+  "format_version": "1.0",
+  "exporter": "scripts/export_planning.py",
+  "source": "local Obsidian vault (path withheld)",
+  "files": [
+    {
+      "file": "00-Inicio/Leia-primeiro.md",
+      "source_sha256": "7ba6437c7adc602ba138fa263f56312c801d3a4fd1619e629d42b878b9d8070e",
+      "published_sha256": "870d450c4f66dd567060f3cd0bf9a11f3ecc872f6925045523c50777379f9516"
+    },
+    {
+      "file": "01-Referencias/Analise-dos-sete-videos.md",
+      "source_sha256": "d89f650b597857a1275ecd7b5fb2ca3af0691804f8c87bd872aa9c13a1a8c549",
+      "published_sha256": "97512f201e5a72a4f0216e075fd1c982e2a2b907b919c9a482863ad47d4ce83c"
+    },
+    {
+      "file": "02-Pesquisa/Validade-cientifica.md",
+      "source_sha256": "04de9f0145ca89bee84dbd8d9671a7db7a5e07396eafd67fbdb423f00d00e3cb",
+      "published_sha256": "04de9f0145ca89bee84dbd8d9671a7db7a5e07396eafd67fbdb423f00d00e3cb"
+    },
+    {
+      "file": "02-Pesquisa/Stack-e-modelos.md",
+      "source_sha256": "5712d8f45c5f4745b69b037a85196797f6f492c20fb1287a4234909c7886f8f3",
+      "published_sha256": "dae9ab949263bb023b00d2b6f4200f74a5ea3482436cf6ce6c5209245f8fdb72"
+    },
+    {
+      "file": "02-Pesquisa/Produto-mercado-e-privacidade.md",
+      "source_sha256": "5f4313d1d317ec1ca62a5cbcda98f4f0301a756a21cec74cd26023ae4e42171c",
+      "published_sha256": "5f4313d1d317ec1ca62a5cbcda98f4f0301a756a21cec74cd26023ae4e42171c"
+    },
+    {
+      "file": "03-Produto/Proposta-integrada.md",
+      "source_sha256": "e9917df148ea6d47f46dcad74b2701719bea58ce60091bc3da3d3650cd231e0f",
+      "published_sha256": "ac76f622f89ef745d8a6089e61174aa748aab04a9eb9b96a55275ec2b266876a"
+    },
+    {
+      "file": "04-Arquitetura/Arquitetura-e-contratos.md",
+      "source_sha256": "da6966069101fca5e3aa9352c4d1bda83e45f0526ebd0938f6681d0acc110b1b",
+      "published_sha256": "684d9fabc2b8205d62b5164b5fdb2989631203b84c7721905e41009a1700949e"
+    },
+    {
+      "file": "04-Arquitetura/Catalogo-de-metricas.md",
+      "source_sha256": "6f8fb384e46162404eccc5a411991d8954090cb785f1a986f5fe5945c3d79afd",
+      "published_sha256": "c70c676d4032e63be1a5c002255f875661e4bf9897959ce4a77b358a6a1d923d"
+    },
+    {
+      "file": "05-Validacao/Plano-de-validacao.md",
+      "source_sha256": "e3d43a428605017a360c15695d03aa94e1a1493d19b196d2cc984bf329a4c96a",
+      "published_sha256": "a1a1002db16eb61577c37c1df41f87e71fcf1a2e540eba611d6af5ce5de6d11b"
+    },
+    {
+      "file": "06-Decisoes/Registro-de-decisoes.md",
+      "source_sha256": "ae4f71fc5f2864bd55dc8651ed234d727c5188122216af203aaab356c683c78f",
+      "published_sha256": "72dd1981092adf32b76caf62dc61f0fec525560a7c349e1d2f2be9c7a7c9fa02"
+    },
+    {
+      "file": "06-Decisoes/Aprovacao-Gabriel-v0.1.md",
+      "source_sha256": "d6be70e30d3fbceaec3183cb91897ed700d3a0b01ce88e8818a98727d9d6b2e8",
+      "published_sha256": "90f103ae4f384102def53ed2cf6b3da45b2c2f16d59cda2ce9035c9512d5d9dd"
+    },
+    {
+      "file": "07-Claude/Handoff-Claude-Opus.md",
+      "source_sha256": "c5ed6f3e2c2555db4df72afe7853525d2346acae325952b50f5050520e1ca67e",
+      "published_sha256": "a86a1f1eac7c31e811c26663bff3a3603c3ef67e2e1b1cd94e864e1cf9de02cd"
+    },
+    {
+      "file": "08-Operacao/Equipe-e-operacao.md",
+      "source_sha256": "6040131ff456174435a05d988872785c5b63cd86a194b9e60b8dbd0f30c2d24d",
+      "published_sha256": "6040131ff456174435a05d988872785c5b63cd86a194b9e60b8dbd0f30c2d24d"
+    },
+    {
+      "file": "08-Operacao/Preparacao-P0-P1.md",
+      "source_sha256": "e0e9606588cc0dd114ae613754e70b7081f76736d3b000f0005378f2e9ddbf4f",
+      "published_sha256": "f873b28085db749cc621b8fecb0d5f27bc9ed7b0db8039d01848adc159b80f58"
+    },
+    {
+      "file": "08-Operacao/Plano-de-implementacao-backend-v0.1.md",
+      "source_sha256": "96de7ed136f99ef95d182856363bb54d067927048955df515f895741a0c4e33f",
+      "published_sha256": "4e0c741b09539d8e73a58d98da5e586e54b3d9f01c664ef8e914243a055c4059"
+    },
+    {
+      "file": "08-Operacao/Quadro-operacional-backend.md",
+      "source_sha256": "9d077cdf6fe17bdcdb79395dcedd0e61aee5cd04506ef51158f1d90e8e9b4c1f",
+      "published_sha256": "b70f4fede9bab067306cf149e5d3dc1c6a897eb3c09d43a69429a86d38a6dafe"
+    },
+    {
+      "file": "08-Operacao/Checkpoint-P1-fundacao-2026-11-01.md",
+      "source_sha256": "51ac41d7ce673e43efbfc6c8963db7f5973116e54e962e06d12f8c5099a4dbf4",
+      "published_sha256": "a1972d7d6c32464773229e08a04ef1041cca6abe1c1bb4733f72935299369848"
+    },
+    {
+      "file": "08-Operacao/Backup-e-proveniencia.md",
+      "source_sha256": "1237377f495bfc1740ff5b80c72a01277b7a92a69f0b6638644543bc3b4ea368",
+      "published_sha256": "ff31df8485e3355d1c9b1d202e93b175574e9c1f0f9a6d1e9401a4037c50dcac"
+    },
+    {
+      "file": "08-Operacao/Registro-da-entrega-2026-11-01.md",
+      "source_sha256": "f2f30ba7aaae9dc46cdd464c79079c1e9f26d25263ec20181eb30b34e30a0c69",
+      "published_sha256": "49c25b478503a7ba7f7c15c37db50cc4ce86d72226f908a824d1ee0c9e1acc8c"
+    },
+    {
+      "file": "09-Templates/Template-experimento.md",
+      "source_sha256": "ffc5fb15af75d4022853f3021fb243863c71b13e4529324209d5da00ca637bab",
+      "published_sha256": "ffc5fb15af75d4022853f3021fb243863c71b13e4529324209d5da00ca637bab"
+    },
+    {
+      "file": "04-Arquitetura/exemplos/01-replay-pesquisa.json",
+      "source_sha256": "730093d55d0d5293018c04d96b57429cbaff142d4eacf5e8dcc4445afe52e128",
+      "published_sha256": "730093d55d0d5293018c04d96b57429cbaff142d4eacf5e8dcc4445afe52e128"
+    },
+    {
+      "file": "04-Arquitetura/exemplos/02-evidencia-insuficiente.json",
+      "source_sha256": "18d9ce50fde2d2eff9172e96af69ef6ec86e899e57b8da999ab3207cbb892f29",
+      "published_sha256": "18d9ce50fde2d2eff9172e96af69ef6ec86e899e57b8da999ab3207cbb892f29"
+    },
+    {
+      "file": "04-Arquitetura/exemplos/03-historico-incompativel.json",
+      "source_sha256": "dec6540decc532692e31e7753f22506afe13c3c2eeac46e742366ecfaac08c16",
+      "published_sha256": "dec6540decc532692e31e7753f22506afe13c3c2eeac46e742366ecfaac08c16"
+    },
+    {
+      "file": "04-Arquitetura/exemplos/04-falha-tecnica.json",
+      "source_sha256": "40d3802fdfb55407f16ab6a9104edf4a3e239cd48956cc76bcc8b81904d35a6d",
+      "published_sha256": "40d3802fdfb55407f16ab6a9104edf4a3e239cd48956cc76bcc8b81904d35a6d"
+    }
+  ],
+  "excludes": [
+    "media",
+    "raw transcripts",
+    "detailed inventory",
+    "Claude drafts",
+    "local configuration",
+    "snapshots",
+    "vault scripts"
+  ]
+}
