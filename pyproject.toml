@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tennis-research-backend"
+version = "0.1.0"
+description = "Local, research-only foundation for traceable tennis video analysis"
+requires-python = ">=3.12,<3.14"
+dependencies = ["pydantic>=2.13.5,<3"]
+
+[dependency-groups]
+dev = ["pytest>=8.3.4,<9", "jsonschema>=4.23,<5"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tennis_backend"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
