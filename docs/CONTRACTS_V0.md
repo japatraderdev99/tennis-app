@@ -106,7 +106,10 @@ Timeline is the complete selected stream, exactly as supplied by media integrati
 consecutive frame_index from 0 and strictly increasing integer PTS. No missing PTS.
 No duplicate frame indices/observations, no observation outside the timeline;
 observation PTS must match its timeline frame. Phase endpoints are inclusive,
-must coincide with timeline entries, start<=end; require at least 2 frames in phase.
+must coincide with timeline entries, start<=end. At least 2 frames in the phase
+are required for a computed result. A one-frame phase is representable input but
+returns `insufficient_evidence` / `insufficient_phase_frames` with its partial
+series. This interpretation was aligned by the head during integration on 2026-11-01.
 Every timeline frame in the phase needs all 3 points. A missing/degenerate point
 or missing observation invalidates the whole attempt, but preserve partial series.
 This conservative coverage rule is a technical research policy, not a validated

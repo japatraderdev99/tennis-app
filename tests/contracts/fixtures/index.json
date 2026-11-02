@@ -203,11 +203,11 @@
     "note": "Phase endpoints must coincide with timeline entries."
   },
   {
-    "file": "negative/input_one_phase_frame.json",
+    "file": "positive/input_one_phase_frame.json",
     "model": "ResearchInput",
-    "valid": false,
+    "valid": true,
     "schema_valid": true,
-    "note": "A phase needs at least two frames."
+    "note": "One frame is representable input; computation must return insufficient evidence."
   },
   {
     "file": "negative/result_later_tie.json",

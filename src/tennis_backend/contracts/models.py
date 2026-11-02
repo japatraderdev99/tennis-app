@@ -229,7 +229,7 @@ class ResearchInput(StrictModel):
     body_side: BodySide
     phase_id: Literal["serve_preparation"]
     phase_window: PhaseWindow
-    timeline: Annotated[list[FrameReference], Field(min_length=2)]
+    timeline: Annotated[list[FrameReference], Field(min_length=1)]
     observations: list[Observation]
     provenance: Provenance
 
@@ -251,8 +251,8 @@ class ResearchInput(StrictModel):
         pts = {frame.pts for frame in self.timeline}
         if start > end or start not in pts or end not in pts:
             raise ValueError("inclusive phase endpoints must match ordered timeline PTS")
-        if sum(start <= frame.pts <= end for frame in self.timeline) < 2:
-            raise ValueError("phase must contain at least two timeline frames")
+        # A one-frame phase is structurally valid but cannot yield a computed
+        # result. DS-01 returns insufficient_phase_frames, preserving its series.
         seen = set()
         for observation in self.observations:
             index = observation.frame_index

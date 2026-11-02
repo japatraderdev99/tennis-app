@@ -206,7 +206,7 @@
       "items": {
         "$ref": "#/$defs/FrameReference"
       },
-      "minItems": 2,
+      "minItems": 1,
       "title": "Timeline",
       "type": "array"
     },

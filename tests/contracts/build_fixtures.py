@@ -179,9 +179,9 @@ def generate() -> None:
     negative("input_phase_unknown", "ResearchInput", INPUT,
              lambda d: d["phase_window"].update(start_pts=1001), schema_valid=True,
              note="Phase endpoints must coincide with timeline entries.")
-    negative("input_one_phase_frame", "ResearchInput", INPUT,
-             lambda d: d["phase_window"].update(start_pts=1080), schema_valid=True,
-             note="A phase needs at least two frames.")
+    example("input_one_phase_frame", "ResearchInput", INPUT,
+            change=lambda d: d["phase_window"].update(start_pts=1080),
+            note="One frame is representable input; computation must return insufficient evidence.")
     negative("result_later_tie", "ResearchResult", RESULT,
              lambda d: d.update(evidence={"frame_index": 2, "pts": 1080}), schema_valid=True,
              note="Earliest PTS wins a peak tie.")

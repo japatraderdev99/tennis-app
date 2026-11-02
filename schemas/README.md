@@ -66,7 +66,8 @@ measurement validation or permission to expose its internal numeric value.
   remains inspectable. Basenames `.`/`..` and whitespace-only names are invalid.
 - Research timeline indices are consecutive from zero, PTS strictly increase,
   inclusive phase endpoints resolve to the timeline, start <= end, and the phase
-  contains at least two frames. Observations are unique references to timeline
+  contains at least one frame. A one-frame phase must produce insufficient evidence,
+  never a computed result. Observations are unique references to timeline
   indices with matching PTS. Observation ordering is unrestricted.
 - Result series indices and PTS strictly increase; computed series indices are
   also consecutive within the phase (they need not start at zero). Computed
