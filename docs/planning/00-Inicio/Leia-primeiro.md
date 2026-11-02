@@ -8,6 +8,11 @@ responsavel: Codex
 
 # App Tennis — cérebro da operação
 
+**Checkpoint atual — 02/11/2026:** [Checkpoint-P2-laboratorio-2026-11-02](../08-Operacao/Checkpoint-P2-laboratorio-2026-11-02.md).
+Laboratório de pose integrado, 1.077 testes locais e inferência real limitada.
+Stack proposta em [Arquitetura-cloud-do-piloto](../04-Arquitetura/Arquitetura-cloud-do-piloto.md); chats e responsabilidades em
+[Onda-P2-pose-e-arquitetura-cloud](../08-Operacao/Onda-P2-pose-e-arquitetura-cloud.md). API/cloud e validação científica permanecem pendentes.
+
 **Direção aprovada por Gabriel em 01/11/2026:** ajudar o tenista que treina sozinho a observar um movimento, entender um foco e acompanhar mudanças sustentadas, com evidências do próprio vídeo e limites de medição explícitos.
 
 O público inicial foi confirmado por Gabriel: **tenistas treinando sozinhos, sem treinador no uso do app**. Especialistas humanos continuam necessários na criação e validação das orientações. Nome comercial, plataforma inicial, orçamento e métricas biomecânicas liberadas ainda estão em aberto.
@@ -45,9 +50,9 @@ Verificações e limites desta rodada: [Registro-da-entrega-2026-11-01](../08-Op
 | Revisão do Claude Opus | Materiais preliminares atribuídos ao Claude encontrados; revisão formal e integração pendentes |
 | Revisão por biomecanicista/treinador | Pendente; ninguém foi contratado ou consultado como especialista humano |
 | Dataset próprio e benchmark de validade | Pendentes; materiais do Claude receberam leitura estática parcial, sem reprodução do benchmark |
-| Backend integrado e aplicativo funcional | Fundação local backend/CLI integrada em main, 674 testes e demo sintética; API, inferência de pose e aplicativo ainda não implementados. Ver [Checkpoint-P1-fundacao-2026-11-01](../08-Operacao/Checkpoint-P1-fundacao-2026-11-01.md) |
+| Backend integrado e aplicativo funcional | Fundação P1 e laboratório P2 integrados, 1.077 testes; MediaPipe/RTMPose exercitados em janela real. API, app e validação biomecânica pendentes. Ver [Checkpoint-P2-laboratorio-2026-11-02](../08-Operacao/Checkpoint-P2-laboratorio-2026-11-02.md) |
 | Benefício esportivo, segurança de recomendações e disposição a pagar | Hipóteses a testar |
-| Backup fora deste dispositivo | Não configurado/verificado |
+| Cópia fora deste dispositivo | Código e notas selecionadas publicados no GitHub; backup independente de vídeos e vault completo ainda não verificado |
 
 ## Regras de leitura
 

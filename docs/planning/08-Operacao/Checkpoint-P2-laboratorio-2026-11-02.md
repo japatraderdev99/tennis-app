@@ -57,3 +57,10 @@ Coordenação/chats: [Onda-P2-pose-e-arquitetura-cloud](Onda-P2-pose-e-arquitetu
 
 O aceite aqui é local. Publicação Git/CI remoto devem ser registrados com evidência
 própria; nenhum push representa implantação cloud ou validação em atletas.
+
+## Publicação do código
+
+Push confirmado em 02/11/2026: integração `f4f0aad` publicada em `main` e
+`integrate/p2-pose-lab`, com as três branches de builders preservadas no remoto
+`japatraderdev99/tennis-app`. O código mantém os commits originais; sem force push.
+Esta anotação não afirma sucesso de CI remoto. Vídeos e artefatos reais não foram publicados.

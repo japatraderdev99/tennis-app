@@ -5,8 +5,8 @@
   "files": [
     {
       "file": "00-Inicio/Leia-primeiro.md",
-      "source_sha256": "7ba6437c7adc602ba138fa263f56312c801d3a4fd1619e629d42b878b9d8070e",
-      "published_sha256": "870d450c4f66dd567060f3cd0bf9a11f3ecc872f6925045523c50777379f9516"
+      "source_sha256": "b166784eb4bcaaf46161f2ff8569a8875af8a748db71778ee536b14c141a7c19",
+      "published_sha256": "bff3500d70f7aa30dfc77ba84dc403cffb4a66bbc765286334874d33c0630a8a"
     },
     {
       "file": "01-Referencias/Analise-dos-sete-videos.md",
@@ -100,8 +100,8 @@
     },
     {
       "file": "08-Operacao/Checkpoint-P2-laboratorio-2026-11-02.md",
-      "source_sha256": "e698b2a28ebe4ffb3e195bed74df6611a2edb2bac041e6b547e6259d66668fd9",
-      "published_sha256": "0c468f2a738eee4eaf04e4b5373a4d697909281e5f67f3eb1aafa015213eee0e"
+      "source_sha256": "258585708f0820c87b2452481e6c142698c981f3d8593790290d6f19a4780cec",
+      "published_sha256": "9efbdf91aa03f2099e70adfd922c7399fbdfc231a1b393cc657912cf1f8a4984"
     },
     {
       "file": "08-Operacao/Backup-e-proveniencia.md",
