@@ -1,6 +1,6 @@
 # Frontend handoff gate — Claude owns the next experience layer
 
-Gabriel reserved UX/UI/frontend for Claude after this backend foundation. No
+The user reserved UX/UI/frontend for Claude after this backend foundation. No
 frontend branch or technology choice is introduced here.
 
 The initial deliverable is a local Python library/CLI, not an HTTP service.
@@ -35,4 +35,17 @@ Do not wire a public app directly to the local research bundle or local file pat
 
 Claude can refine capture/replay and understanding with labeled mock data while
 the science gate remains closed. Any expansion of visible claims returns to the
-two heads and Gabriel for review based on evidence.
+two heads and the user for review based on evidence.
+
+## P2 checkpoint
+
+The research backend now extracts pose through optional local adapters and can
+prepare independent annotation templates. Pose artifacts are not public metric
+reports. Empty templates deliberately yield `not_evaluated`; model confidence
+must not be displayed as accuracy. A lost or ambiguous player association needs
+an explicit new selection, not silent recovery to a different person.
+
+The infrastructure target is Supabase Auth/PostgreSQL plus GCS, Cloud Run API and
+worker, and Cloud Tasks (ADR-0001). HTTP contracts, upload/job persistence and
+provider integration are the next backend wave. Hosting and frontend framework
+remain Claude's decision with the user; there is no deployed API to connect yet.

@@ -39,6 +39,11 @@
       "published_sha256": "684d9fabc2b8205d62b5164b5fdb2989631203b84c7721905e41009a1700949e"
     },
     {
+      "file": "04-Arquitetura/Arquitetura-cloud-do-piloto.md",
+      "source_sha256": "c86c8c7817f574c182163aaba24b44a8c7089d87550f3a6684c57ce3377ff8b1",
+      "published_sha256": "67f68c8f19189ae426c12f92393edc4b953bb5214cc0531df16b95b0a43b9629"
+    },
+    {
       "file": "04-Arquitetura/Catalogo-de-metricas.md",
       "source_sha256": "6f8fb384e46162404eccc5a411991d8954090cb785f1a986f5fe5945c3d79afd",
       "published_sha256": "c70c676d4032e63be1a5c002255f875661e4bf9897959ce4a77b358a6a1d923d"
@@ -87,6 +92,16 @@
       "file": "08-Operacao/Checkpoint-P1-fundacao-2026-11-01.md",
       "source_sha256": "51ac41d7ce673e43efbfc6c8963db7f5973116e54e962e06d12f8c5099a4dbf4",
       "published_sha256": "a1972d7d6c32464773229e08a04ef1041cca6abe1c1bb4733f72935299369848"
+    },
+    {
+      "file": "08-Operacao/Onda-P2-pose-e-arquitetura-cloud.md",
+      "source_sha256": "a6a1d9f7daadf867f496e0132784fc0ddf866923e1ab7dea6a821536df702f7d",
+      "published_sha256": "f545b3872290007c37ed3f473d849d894227ecbca3560a362e6a42b8da2e143c"
+    },
+    {
+      "file": "08-Operacao/Checkpoint-P2-laboratorio-2026-11-02.md",
+      "source_sha256": "e698b2a28ebe4ffb3e195bed74df6611a2edb2bac041e6b547e6259d66668fd9",
+      "published_sha256": "0c468f2a738eee4eaf04e4b5373a4d697909281e5f67f3eb1aafa015213eee0e"
     },
     {
       "file": "08-Operacao/Backup-e-proveniencia.md",

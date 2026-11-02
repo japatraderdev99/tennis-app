@@ -5,9 +5,11 @@ movimentos a partir de vídeos de celular. A proposta combina evidência rastre�
 com uma experiência simples; Codex lidera backend/data science e Claude liderará
 UX/UI/frontend na etapa posterior.
 
-**Estado atual:** biblioteca Python e CLI local de P1, integradas e verificadas
-com 674 testes e uma demonstração sintética. Ainda não há API HTTP, inferência
-de pose, aplicativo visual ou métrica biomecânica validada em atletas.
+**Estado atual:** biblioteca/CLI local de P1 e laboratório de pose P2 integrado.
+MediaPipe e RTMPose têm adaptadores opcionais, seleção explícita do jogador e
+anotação/avaliação independente. Ainda não há API HTTP, aplicativo visual,
+implantação cloud ou métrica biomecânica validada em atletas. Veja a evidência e
+os limites no [checkpoint P2](docs/deliveries/HEAD-P2.md).
 
 ## Comece por aqui
 
@@ -15,6 +17,8 @@ de pose, aplicativo visual ou métrica biomecânica validada em atletas.
 - [Plano de implementação](docs/planning/08-Operacao/Plano-de-implementacao-backend-v0.1.md): ondas, responsabilidades e critérios de avanço.
 - [Contrato executável](docs/CONTRACTS_V0.md) e [JSON Schemas](schemas/README.md).
 - [Entrega integrada de P1](docs/deliveries/HEAD-P1.md): testes, decisões e limites.
+- [Laboratório P2](docs/P2_POSE_LAB.md) e [operação paralela](docs/P2_OPERATIONS.md).
+- [Arquitetura cloud proposta](docs/architecture/ADR-0001-pilot-cloud.md): Supabase Auth/PostgreSQL e Google Cloud Storage/Run/Tasks.
 - [Handoff para Claude](docs/FRONTEND_HANDOFF_GATE.md): requisitos para UX/UI/frontend.
 - [Organização do repositório](docs/REPOSITORY.md) e [contribuição](CONTRIBUTING.md).
 
@@ -68,6 +72,33 @@ O vault original permanece no workspace, sem movimentação ou sobrescrita.
 e IDs de chats removidos. Vídeos originais, frames, transcrições, pesos, ambientes
 locais e materiais preliminares do Claude permanecem fora do Git.
 
+## Laboratório de pose opcional
+
+O pacote base não importa bibliotecas de visão computacional. Para o ambiente
+experimental separado, com versões do lockfile:
+
+```sh
+UV_PROJECT_ENVIRONMENT=.venv-pose uv sync --frozen --extra pose
+```
+
+`MediaPipeAdapter` e `RTMPoseAdapter` recebem pesos **locais**, sem download
+automático. O detector RTMPose deve ser YOLOX somente de pessoas; pesos COCO
+multiclasse não são compatíveis com essa interface. O perfil testado usa HumanArt
+e RTMPose-x COCO17 384×288. Termos dos checkpoints precisam ser fechados antes
+de distribuição comercial. A instalação real foi exercitada em macOS arm64;
+inferência em container Linux ainda precisa de verificação própria.
+
+`infer_pose_frames` recebe manifesto de mídia, adaptador e frames decodificados
+com índices da origem. O chamador declara transformações de imagem e fecha o
+adaptador. `prepare_pose_review` exige um jogador escolhido explicitamente e cria
+referências **em branco**. `write_pose_review` grava um diretório novo com hashes.
+Veja [o protocolo de anotação](docs/research/P2_ANNOTATION_PROTOCOL.md).
+
+Essas funções não implementam upload, decodificador arbitrário nem serviço HTTP.
+O overlay ajuda a inspecionar o modelo; não estabelece precisão. A seleção por
+caixas é uma heurística e interrompe em perda, lacuna ou ambiguidade. Sem
+referências humanas independentes, a avaliação fica `not_evaluated`.
+
 ## Limites e próxima etapa
 
 O cálculo atual é flexão **projetada em 2D**, com lado e fase fornecidos. Lacunas
@@ -78,6 +109,7 @@ A inspeção limita formatos, referências externas, tempo, bytes, frames e saí
 do processo. FFprobe continua sendo um processo nativo local: esses controles
 não constituem isolamento de produção para uploads não confiáveis.
 
-A próxima onda planejada cobre API/persistência e um experimento de pose com
-licença, proveniência e protocolo de validação. Claude recebe os contratos e
-estados estabilizados para conduzir UX/UI/frontend. Nenhum serviço foi implantado.
+A próxima onda cobre API/persistência local, ciclo de uploads/jobs e adaptadores
+de provedores, antes de provisionamento cloud. Em paralelo, a pesquisa exige
+anotações independentes e testes de captura. Claude recebe os contratos e estados
+estabilizados para conduzir UX/UI/frontend. Nenhum serviço foi implantado.

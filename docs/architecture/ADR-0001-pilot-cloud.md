@@ -1,7 +1,8 @@
 # ADR-0001 — Supabase control data and Google Cloud video processing
 
 Status: head proposal adopted as the design target; not deployed, priced or
-scientifically validated. Date: 2026-11-01. Provider provisioning is a later gate.
+scientifically validated. Date: 2026-11-01; organized checkpoint: 2026-11-02.
+Provider provisioning is a later gate.
 
 ## Decision
 

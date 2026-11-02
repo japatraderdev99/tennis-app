@@ -1,6 +1,7 @@
 # P2 — operational assignments
 
-Status: implementation authorized; technical experiment only. Base: P1 public
+Status: local technical acceptance recorded in `deliveries/HEAD-P2.md`; no
+scientific promotion or cloud deployment. Base: P1 public
 foundation plus this coordination commit. All builders: gpt-6.1-sol, high.
 
 | ID | Branch | Owned paths | Deliverable |

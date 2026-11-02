@@ -23,6 +23,12 @@ A publicação inclui `main`, as três branches de implementação, a branch de
 integração e a tag `p1-foundation-v0.1.0`. Os commits originais e os metadados Git
 foram preservados; não foi feito force push nem reescrita de autores.
 
+Na onda P2, `feat/p2-pose-adapters`, `feat/p2-target-selection` e
+`feat/p2-pose-evaluation` preservam as entregas isoladas. `integrate/p2-pose-lab`
+reúne os merges, revisão e ajustes do head antes da promoção para `main`.
+O checkpoint técnico está em `docs/deliveries/HEAD-P2.md`; vídeos, pesos e
+artefatos reais continuam somente no workspace privado.
+
 O espelho remove caminhos pessoais e IDs de chats, converte wikilinks em links
 Markdown e registra hashes. Não inclui mídia, inventário detalhado, transcrições,
 pesquisa/experimentos/conceito preliminares do Claude ou configurações pessoais.

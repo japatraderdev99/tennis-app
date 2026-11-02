@@ -93,7 +93,10 @@ gets timestamps from pts*time_base, rounded to milliseconds only for its API;
 detect collisions/backwards time and fail rather than inventing order. IMAGE mode
 is allowed for sparse independent samples. Record mode and mapping in provenance.
 Validate supplied frame_index/pts/time_base and image dimensions/type. No inference
-past an explicit close. RTMPose must skip its pose estimator for zero detector
+past an explicit close. The RTMPose adapter requires a person-only YOLOX detector
+(tested profile: HumanArt). Multi-class COCO detector checkpoints are unsupported;
+the current RTMLib interface does not return classes for filtering here.
+RTMPose must skip its pose estimator for zero detector
 boxes (otherwise its library invents a full-image crop).
 
 ## BE-03 interface

@@ -25,6 +25,7 @@ NOTES = (
     "02-Pesquisa/Produto-mercado-e-privacidade.md",
     "03-Produto/Proposta-integrada.md",
     "04-Arquitetura/Arquitetura-e-contratos.md",
+    "04-Arquitetura/Arquitetura-cloud-do-piloto.md",
     "04-Arquitetura/Catalogo-de-metricas.md",
     "05-Validacao/Plano-de-validacao.md",
     "06-Decisoes/Registro-de-decisoes.md",
@@ -35,6 +36,8 @@ NOTES = (
     "08-Operacao/Plano-de-implementacao-backend-v0.1.md",
     "08-Operacao/Quadro-operacional-backend.md",
     "08-Operacao/Checkpoint-P1-fundacao-2026-11-01.md",
+    "08-Operacao/Onda-P2-pose-e-arquitetura-cloud.md",
+    "08-Operacao/Checkpoint-P2-laboratorio-2026-11-02.md",
     "08-Operacao/Backup-e-proveniencia.md",
     "08-Operacao/Registro-da-entrega-2026-11-01.md",
     "09-Templates/Template-experimento.md",
@@ -102,9 +105,10 @@ def export(vault: Path, *, check: bool = False) -> int:
         "Cópia portátil de notas selecionadas do vault Obsidian, com links navegáveis no GitHub. "
         "O vault local continua sendo a fonte editorial; esta pasta é um espelho gerado. "
         "Caminhos pessoais e IDs de chats foram substituídos.\n",
-        "Os documentos registram decisões históricas de 01/11/2026. Frases como ‘sem remoto’ "
+        "Os documentos registram decisões de 01–02/11/2026. Frases como ‘sem remoto’ "
         "descrevem o checkpoint anterior à publicação. O estado atual do código está no "
-        "[README principal](../../README.md) e em [HEAD-P1](../deliveries/HEAD-P1.md).\n",
+        "[README principal](../../README.md), em [HEAD-P1](../deliveries/HEAD-P1.md) "
+        "e em [HEAD-P2](../deliveries/HEAD-P2.md).\n",
         "## Índice\n",
     ]
     index.extend(f"- [{Path(path).stem}]({quote(path, safe='/')})" for path in NOTES)
