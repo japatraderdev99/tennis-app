@@ -1,5 +1,18 @@
 # Operating agreement — P1 foundation
 
+## Active wave: P2 pose laboratory
+
+Gabriel authorized new parallel operational chats, gpt-6.1-sol/high, with head
+orchestration and review. For CV-02, BE-03 and DS-02, read
+`docs/P2_POSE_LAB.md` and `docs/P2_OPERATIONS.md` before implementation.
+Their P2 assignments extend this historical P1 scope. They may implement pose
+inference, conservative target association and annotation/evaluation tooling in
+their assigned modules. Head may provision a separate local runtime and use the
+existing local model weights for private tests on the user-provided videos.
+No cloud provisioning, automatic training, frontend, biomechanical scoring or
+publication of videos/landmarks is authorized by this wave. P1 public scientific
+gates remain unchanged. Worker commits are local; head owns integration/push.
+
 Read `docs/CONTRACTS_V0.md` and your assignment in `docs/OPERATIONS.md` first.
 This is a local research backend. Gabriel authorized implementation and parallel
 branches on 2026-11-01. UX/UI/frontend belong to Claude in a later wave.
