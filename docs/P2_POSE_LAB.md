@@ -98,11 +98,13 @@ boxes (otherwise its library invents a full-image crop).
 
 ## BE-03 interface
 
-Export `select_target(frames, *, seed_frame_index, seed_detection_id,
+Export `select_target(artifact, *, seed_frame_index, seed_detection_id,
 min_iou=0.2, ambiguity_margin=0.05) -> dict` from `tennis_backend.selection`.
-Consume the PoseFrame dictionaries above with independent strict validation.
+Consume the PoseArtifact dictionary above. Validate asset_id, time_base, schema
+and frames independently; never accept a bare unbound frame list.
+min_iou is finite in (0,1], ambiguity_margin finite in [0,1]; reject booleans.
 
-Output `{selection_schema_version:"0.1.0", method:"conservative_iou_v0",
+Output `{selection_schema_version:"0.1.0", asset_id, time_base, method:"conservative_iou_v0",
 seed:{frame_index,detection_id}, parameters:{min_iou,ambiguity_margin},
 frames:[{frame_index,pts,status,detection_id,reason}], validation_ref:null}`.
 status is `not_started|selected|lost|ambiguous`; detection_id only for selected;
@@ -117,6 +119,7 @@ ambiguous. After loss/ambiguity stay lost until a new explicit user seed in a ne
 call. No automatic reidentification or face processing. A frame_index gap must
 stop association (sparse samples are not continuous tracking). Duplicate IDs,
 invalid geometry, nonfinite values or time regressions fail clearly.
+Selected means heuristic geometric association, not independently verified identity.
 
 ## DS-02 interface
 
@@ -134,7 +137,7 @@ frames:[{frame_index,pts,display_width,display_height,detection_id:string|null,
 keypoints:[{name,x:finite|null,y:finite|null,
 visibility:"unreviewed"|"visible"|"occluded"|"out_of_frame"}]}]}`.
 Template includes selected frames only. A reviewed reference must have annotator
-ID and explicit visibility; visible needs finite reference x/y, others need null
+ID and explicit visibility (never unreviewed); visible needs finite reference x/y, others need null
 coordinates. Annotation frame/detection IDs link to predictions but coordinates
 must be independently reviewed. Annotations may be a subset; missing annotations
 are excluded from evaluation, while missing predictions for visible annotated
@@ -151,6 +154,14 @@ Reject mismatched asset/time_base/PTS/dimensions/names/duplicate keys and nonfin
 JSON. A missing detection in a valid frame is a missing prediction, not an input
 crash. Document what a single annotator establishes and need for independent
 second annotation/adjudication in the scientific protocol.
+
+Annotations require all 17 COCO keypoints, complete and ordered; only frames may
+be a subset. Template must validate selection asset_id/time_base and evidence
+against its artifact. The annotator must confirm the target athlete; reusing an
+annotation across model-specific detection IDs requires reviewed correspondence.
+Zero visible reference points => not_evaluated, coverage/errors null, reason.
+Visible references with zero predictions => computed, coverage=0, errors null,
+missing_predictions=reference_points; this measures missing output, not zero error.
 
 ## Tests and gates
 
