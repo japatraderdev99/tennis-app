@@ -6,8 +6,8 @@ export default defineConfig({
   reporter: "list",
   use: {
     ...devices["Pixel 7"],
-    baseURL: "http://localhost:5183/?velocidade=rapida",
+    baseURL: "http://127.0.0.1:5184/?velocidade=rapida",
     trace: "retain-on-failure",
   },
-  webServer: { command: "npm run dev", url: "http://localhost:5183", reuseExistingServer: true },
+  webServer: { command: "npm run dev", url: "http://127.0.0.1:5184", reuseExistingServer: !process.env.CI },
 });

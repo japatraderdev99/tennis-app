@@ -142,6 +142,39 @@ describe("relatório público", () => {
 });
 
 describe("replay", () => {
+  it.each(["failed", "cancelled"] as const)("%s preserva mídia sem inventar overlay ou avaliação de captura", async (state) => {
+    const c = clock();
+    const client = createMockClient({ now: c.now });
+    const scenario = state === "failed" ? "falha" : "limpo";
+    const session = await client.createSession(scenario);
+    c.advance(FAR);
+    await client.startAnalysis(session.session_id, foregroundSeed(scenario, 0.4));
+    if (state === "cancelled") await client.cancelRun(session.session_id);
+    c.advance(FAR);
+    expect((await client.getSession(session.session_id))!.run!.state).toBe(state);
+    const replay = await client.getReplay(session.session_id);
+    expect(replay.frames.length).toBe(clipOf(scenario).frames.length);
+    expect(replay.frames.map((f) => f.pts)).toEqual(clipOf(scenario).frames.map((f) => f.pts));
+    expect(replay.frames.every((f) => f.keypoints === null && f.status === "not_started")).toBe(true);
+    expect(replay.coverage.frames_with_skeleton).toBe(0);
+    expect(replay.capture).toEqual({ state: "not_assessed", issues: [] });
+    expect(replay.evaluation.status).toBe("not_evaluated");
+    expect(client.openPainter(session.session_id).width).toBe(SCENARIOS[scenario].spec.width);
+  });
+
+  it.each(["longe", "camera-lenta"] as const)("%s conserva o bloqueio já conhecido no replay sem análise", async (scenario) => {
+    const c = clock();
+    const client = createMockClient({ now: c.now });
+    const session = await client.createSession(scenario);
+    c.advance(FAR);
+    const options = await client.getSeedOptions(session.session_id);
+    const replay = await client.getReplay(session.session_id);
+    expect(options.blocked).not.toBeNull();
+    expect(replay.capture).toEqual({ state: "not_analyzable", issues: [options.blocked] });
+    expect(replay.frames.every((f) => f.keypoints === null)).toBe(true);
+    expect(replay.run_id).toBeNull();
+  });
+
   it("não expõe score, visibility nem presence", async () => {
     const { client, id } = await finished("limpo");
     const text = JSON.stringify(await client.getReplay(id));
@@ -192,6 +225,57 @@ describe("replay", () => {
 });
 
 describe("fluxo", () => {
+  it.each([0, FAR])("exclusão bloqueia replay, painter e candidatos após %i ms", async (elapsed) => {
+    const { client, c, id } = await finished("limpo");
+    await client.deleteSession(id);
+    c.advance(elapsed);
+    await expect(client.getReplay(id)).rejects.toThrow("Acesso removido");
+    expect(() => client.openPainter(id)).toThrow("Acesso removido");
+    await expect(client.getSeedOptions(id)).rejects.toThrow("Acesso removido");
+    // A consulta da remoção continua disponível para a própria tela de progresso.
+    expect((await client.getSession(id))!.deletion).toBe(elapsed === 0 ? "access_blocked" : "deleted");
+  });
+
+  it.each(["resumeUpload", "startAnalysis", "reselect", "retry", "cancelRun", "flagFrame"] as const)(
+    "%s não modifica uma sessão após pedido de exclusão",
+    async (operation) => {
+      const { client, c, id } = await finished("limpo");
+      await client.deleteSession(id);
+      const seed = foregroundSeed("limpo", 0.4);
+      const mutate = () => {
+        if (operation === "startAnalysis" || operation === "reselect") return client[operation](id, seed);
+        if (operation === "flagFrame") return client.flagFrame(id, seed.frame_index);
+        return client[operation](id);
+      };
+      for (const elapsed of [0, FAR]) {
+        c.advance(elapsed);
+        const before = await client.getSession(id);
+        await expect(mutate()).rejects.toThrow("Acesso removido");
+        expect(await client.getSession(id)).toEqual(before);
+      }
+    },
+  );
+
+  it("repetir exclusão não reinicia o relógio nem reaparece no histórico", async () => {
+    const c = clock();
+    const client = createMockClient({ now: c.now });
+    const control = await client.createSession("limpo");
+    const repeated = await client.createSession("limpo");
+    await client.deleteSession(control.session_id);
+    await client.deleteSession(repeated.session_id);
+    c.advance(2000);
+    const inProgress = (await client.getSession(repeated.session_id))!.deletion;
+    expect(inProgress).toBe("removing_files");
+    await client.deleteSession(repeated.session_id);
+    expect((await client.getSession(repeated.session_id))!.deletion).toBe(inProgress);
+    c.advance(2000);
+    expect((await client.getSession(control.session_id))!.deletion).toBe("deleted");
+    expect((await client.getSession(repeated.session_id))!.deletion).toBe("deleted");
+    await client.deleteSession(repeated.session_id);
+    expect((await client.getSession(repeated.session_id))!.deletion).toBe("deleted");
+    expect(await client.listSessions()).toEqual([]);
+  });
+
   it("rota segue o estado do servidor", async () => {
     const c = clock();
     const client = createMockClient({ now: c.now });

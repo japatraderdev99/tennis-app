@@ -1,15 +1,12 @@
 import type { LocalVideo, Replay, Seed, SeedOptions, Session } from "./types";
 
-/** Desenha um quadro em pixels de exibição. Em produção, encapsula o `<video>`. */
-export interface FramePainter {
-  width: number;
-  height: number;
-  paint(ctx: CanvasRenderingContext2D, frameIndex: number): void;
-}
+import type { FramePainter } from "./media";
+export type { FramePainter } from "./media";
 
 /**
  * Única porta entre telas e dados. As telas não conhecem os mocks; a integração
- * real substitui `createClient` em `src/main.tsx` por uma implementação HTTP.
+ * de serviço substitui o cliente; vídeo real também precisa de FrameSource
+ * assíncrono e manifesto fonte/derivado. Mudar só HTTP não estabelece sincronismo.
  */
 export interface ApiClient {
   readonly isDemo: boolean;

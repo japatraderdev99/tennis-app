@@ -66,6 +66,11 @@ export function createMockClient(opts: { speed?: number; storage?: Storage_; now
     if (!r) throw new Error("Sessão não encontrada");
     return r;
   };
+  const active = (id: string): Record_ => {
+    const r = find(id);
+    if (r.deletionAt !== null) throw new Error("Acesso removido nesta demonstração");
+    return r;
+  };
 
   const uploadOf = (r: Record_): UploadProgress => {
     const s = SCENARIOS[r.scenario];
@@ -201,7 +206,8 @@ export function createMockClient(opts: { speed?: number; storage?: Storage_; now
   const replayOf = (r: Record_): Replay => {
     const clip = clipOf(r.scenario);
     const s = SCENARIOS[r.scenario];
-    const sel = selectionOf(r);
+    const analyzed = runOf(r)?.state === "succeeded";
+    const sel = analyzed ? selectionOf(r) : [];
     const frames: ReplayFrame[] = clip.frames.map((f, i) => {
       const entry = sel[i];
       const det = entry?.status === "selected" ? f.detections.find((d) => d.detection_id === entry.detection_id) : undefined;
@@ -229,7 +235,7 @@ export function createMockClient(opts: { speed?: number; storage?: Storage_; now
       display_width: s.spec.width,
       display_height: s.spec.height,
       frames,
-      capture: captureOf(r),
+      capture: s.block || analyzed ? captureOf(r) : { state: "not_assessed", issues: [] },
       coverage: { frames_with_skeleton: frames.filter((f) => f.keypoints !== null).length, total_frames: frames.length },
       evaluation: { status: "not_evaluated", reasons: ["annotations_unreviewed"] },
       provenance: { adapter: "simulado", adapter_version: "sem inferência", simulated: true },
@@ -275,10 +281,10 @@ export function createMockClient(opts: { speed?: number; storage?: Storage_; now
       save(s);
       return toSession(rec);
     },
-    async resumeUpload(id) { update(id, (r) => { r.resumedAt = now(); }); },
+    async resumeUpload(id) { active(id); update(id, (r) => { r.resumedAt = now(); }); },
 
     async getSeedOptions(id): Promise<SeedOptions> {
-      const r = find(id);
+      const r = active(id);
       const scenario = SCENARIOS[r.scenario];
       if (scenario.block) return { blocked: captureOf(r).issues[0]!, frames: [] };
       const frames = clipOf(r.scenario).frames;
@@ -296,32 +302,36 @@ export function createMockClient(opts: { speed?: number; storage?: Storage_; now
       };
     },
     async startAnalysis(id, seed) {
+      active(id);
       update(id, (r) => { r.runs.push(newRun(r, [seed], !!SCENARIOS[r.scenario].failFirstRun && r.runs.length === 0)); });
     },
     async reselect(id, seed) {
+      active(id);
       update(id, (r) => {
         const prior = r.runs[r.runs.length - 1]?.seeds ?? [];
         r.runs.push(newRun(r, [...prior, seed], false));
       });
     },
     async retry(id) {
+      active(id);
       update(id, (r) => {
         const prior = r.runs[r.runs.length - 1]?.seeds ?? [];
         r.runs.push(newRun(r, prior, false));
       });
     },
     async cancelRun(id) {
+      active(id);
       update(id, (r) => {
         const rec = r.runs[r.runs.length - 1];
         if (rec) rec.cancelledAt = now();
       });
     },
 
-    async getReplay(id) { return replayOf(find(id)); },
-    openPainter: (id): FramePainter => clipOf(find(id).scenario).painter,
+    async getReplay(id) { return replayOf(active(id)); },
+    openPainter: (id): FramePainter => clipOf(active(id).scenario).painter,
 
-    async flagFrame(id, frame) { update(id, (r) => { r.flags.push(frame); }); },
-    async deleteSession(id) { update(id, (r) => { r.deletionAt = now(); }); },
+    async flagFrame(id, frame) { active(id); update(id, (r) => { r.flags.push(frame); }); },
+    async deleteSession(id) { update(id, (r) => { if (r.deletionAt === null) r.deletionAt = now(); }); },
 
     resetAll() { storage.removeItem(KEY); },
     async seedLab(scenario, target) {

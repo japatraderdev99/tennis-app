@@ -91,7 +91,7 @@ export interface CaptureIssue {
 
 export interface CaptureAssessment {
   /** "no_issue_detected" não afirma que a captura é boa; o critério não foi validado. */
-  state: "no_issue_detected" | "limited" | "not_analyzable";
+  state: "not_assessed" | "no_issue_detected" | "limited" | "not_analyzable";
   issues: CaptureIssue[];
 }
 

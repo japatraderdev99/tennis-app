@@ -13,10 +13,11 @@ export function Intro() {
   const client = useClient();
   const painter = client.openLocalPainter("limpo");
   const [frame, setFrame] = useState(68);
+  const [playing, setPlaying] = useState(false);
 
-  // Único movimento automático do app: o saque simulado se repete na abertura.
+  // Movimento só após uma ação explícita; pode ser pausado a qualquer momento.
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!playing) return;
     let raf = 0;
     const start = performance.now();
     const loop = (t: number) => {
@@ -25,15 +26,17 @@ export function Intro() {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [playing]);
 
   return (
     <Screen
       title="Veja seu saque de fora"
       hero={<div className="heroi"><VideoStage painter={painter} frame={frame} label="Demonstração: jogador simulado fazendo um saque." /></div>}
     >
+      <p className="abertura-marca">Quadro</p>
       <p className="lead">Filme um saque, marque quem é você e reveja o movimento quadro a quadro, com um esqueleto estimado sobre o vídeo.</p>
-      <p>O app não dá nota nem diz o que corrigir. Se o vídeo não permitir análise, ele explica o motivo e como filmar de novo.</p>
+      <button type="button" className="btn-texto movimento-demo" onClick={() => setPlaying(!playing)}>{playing ? "Pausar demonstração" : "Ver o movimento simulado"}</button>
+      <p>Confira o desenho com o que você vê no vídeo. Quando a marcação falhar, a revisão mostra onde parou. Medidas do movimento ainda estão em validação.</p>
       <div className="acoes">
         <button type="button" className="btn btn-principal" onClick={() => { try { localStorage.setItem(INTRO_KEY, "1"); } catch { /* segue */ } go("/como-filmar"); }}>Começar</button>
       </div>
@@ -80,7 +83,9 @@ function SessionRow({ session }: { session: Session }) {
   return (
     <li>
       <button type="button" className="sessao" onClick={() => go(`/sessao/${session.session_id}`)}>
-        <Thumb painter={client.openPainter(session.session_id)} frame={20} />
+        {session.deletion === "none"
+          ? <Thumb painter={client.openPainter(session.session_id)} frame={20} />
+          : <span className="menor">Removendo</span>}
         <span>
           <b>{session.video.title}</b>
           <span className="linha-estado">{formatDate(session.created_at)}</span>

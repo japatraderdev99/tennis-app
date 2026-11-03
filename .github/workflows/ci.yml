@@ -1,4 +1,4 @@
-name: Backend checks
+name: Backend and prototype checks
 
 on:
   push:
@@ -51,3 +51,62 @@ jobs:
         run: |
           uv run --frozen python -m tennis_backend.contracts.generate_schemas
           git diff --exit-code -- schemas
+
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          version: '0.7.4'
+          enable-cache: true
+      - name: Install locked dependencies
+        run: |
+          uv sync --frozen --python 3.12
+          npm ci --prefix frontend
+      - name: Unit tests, result validation and build
+        working-directory: frontend
+        run: |
+          npm test
+          node --test benchmarks/results.test.mjs
+          npm run build
+      - name: Validate fixture inventory and backend parity
+        run: |
+          uv run --frozen pytest -q frontend/tests/test_fixture_verification.py
+          cd frontend
+          node --import tsx scripts/export-fixtures.ts artifacts/ci-fixtures --full
+          cd ..
+          uv run --frozen python frontend/scripts/verify_against_backend.py frontend/artifacts/ci-fixtures
+      - name: Install Chromium
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: End to end UI checks
+        working-directory: frontend
+        run: npx playwright test journey.spec.ts improvements.spec.ts --workers=1 --retries=0
+      - name: Run deterministic task benchmark
+        working-directory: frontend
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: artifacts/ci-benchmark/playwright.json
+        run: |
+          mkdir -p artifacts/ci-benchmark
+          node benchmarks/metadata.mjs > artifacts/ci-benchmark/metadata.json
+          npx playwright test e2e/benchmark.spec.ts --grep @benchmark --workers=1 --retries=0 --reporter=json
+          node benchmarks/results.mjs normalize artifacts/ci-benchmark/playwright.json artifacts/ci-benchmark/metadata.json artifacts/ci-benchmark/result.json
+          node benchmarks/results.mjs validate artifacts/ci-benchmark/result.json
+      - name: Retain synthetic test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: prototype-test-evidence
+          path: |
+            frontend/artifacts/ci-benchmark/
+            frontend/test-results/
+          retention-days: 14

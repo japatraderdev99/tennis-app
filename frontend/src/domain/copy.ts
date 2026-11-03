@@ -85,7 +85,8 @@ export function processingLine(s: Session): string {
 
 export function captureLine(s: Session): string | null {
   if (s.deletion !== "none" || !s.capture) return null;
+  if (s.capture.state === "not_assessed") return "Não avaliado";
   const first = s.capture.issues[0];
   if (first) return ISSUE_COPY[first.code].title;
-  return "Nenhum problema de filmagem encontrado";
+  return "Jogador acompanhado neste trecho";
 }

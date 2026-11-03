@@ -7,7 +7,7 @@ import { App } from "./App";
 import { createMockClient } from "./mocks/mockClient";
 import { ClientProvider } from "./ui/parts";
 
-// Ponto único de troca: a integração real substitui esta linha por um cliente HTTP.
+// Cliente de demonstração. Integração real também exige adapter de mídia e mapa de PTS.
 const fast = new URLSearchParams(window.location.search).get("velocidade") === "rapida";
 const client = createMockClient({ speed: fast ? 0.08 : 1 });
 

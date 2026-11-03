@@ -64,8 +64,7 @@ test("percurso completo, do primeiro uso à exclusão", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Escolha um vídeo para enviar" })).toBeDisabled();
   await page.getByRole("button", { name: /Saque na quadra 2/ }).click();
   await shot(page, "03-escolher-video");
-  // A barra fixa cobre parte de um item só até a rolagem. O tamanho real é conferido abaixo.
-  await axe(page, ["target-size"]);
+  await axe(page);
   for (const box of await page.locator(".video-opcao").all()) {
     expect((await box.boundingBox())!.height).toBeGreaterThanOrEqual(44);
   }
@@ -88,7 +87,7 @@ test("percurso completo, do primeiro uso à exclusão", async ({ page }) => {
   await axe(page);
 
   await expect(page.getByRole("button", { name: "Reproduzir" })).toBeVisible({ timeout: 15000 });
-  await expect(page.getByText("Nenhum problema de filmagem encontrado")).toBeVisible();
+  await expect(page.getByText("Jogador acompanhado neste trecho")).toBeVisible();
   await noClaims(page);
   await noHorizontalOverflow(page);
   await shot(page, "07-revisao");
@@ -217,7 +216,7 @@ test("falha técnica não culpa o vídeo e tentar de novo funciona", async ({ pa
   await tapPlayer(page);
   await page.getByRole("button", { name: "Sou eu: continuar" }).click();
   await expect(page.getByRole("heading", { name: "O processamento falhou" })).toBeVisible({ timeout: 15000 });
-  await expect(page.getByText(/Não tem relação com seu vídeo/)).toBeVisible();
+  await expect(page.getByText(/Isso não é uma avaliação do seu saque/)).toBeVisible();
   await shot(page, "19-falha");
   await axe(page);
   await page.getByRole("button", { name: "Tentar de novo" }).click();

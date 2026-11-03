@@ -5,13 +5,13 @@
   "type": "module",
   "description": "Protótipo navegável com dados simulados. Não é o aplicativo de produção.",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview --host",
+    "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "fixtures": "tsx scripts/export-fixtures.ts fixtures"
+    "fixtures": "node --import tsx scripts/export-fixtures.ts fixtures"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

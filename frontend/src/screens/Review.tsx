@@ -14,9 +14,18 @@ export function Review({ session, refresh }: { session: Session; refresh: () => 
   const client = useClient();
   const id = session.session_id;
   const [replay, setReplay] = useState<Replay>();
+  const [error, setError] = useState(false);
+  const [retry, setRetry] = useState(0);
   const runId = session.run?.run_id ?? null;
-  useEffect(() => { void client.getReplay(id).then(setReplay); }, [client, id, runId]);
+  useEffect(() => {
+    let active = true;
+    setReplay(undefined); setError(false);
+    void client.getReplay(id).then((data) => { if (active) setReplay(data); }, () => { if (active) setError(true); });
+    return () => { active = false; };
+  }, [client, id, runId, retry]);
+  if (error) return <Screen title="Não consegui abrir a revisão" back={{ label: "Seus saques", onClick: () => go("/") }}><p role="alert">Tente carregar novamente. O vídeo não foi excluído por esta falha.</p><button className="btn btn-principal" onClick={() => setRetry((n) => n + 1)}>Carregar revisão de novo</button></Screen>;
   if (!replay) return <Screen title="Abrindo a revisão"><p role="status">Carregando o vídeo.</p></Screen>;
+  if (!replay.frames.length) return <Screen title="Ainda não há quadros para rever" back={{ label: "Seus saques", onClick: () => go("/") }}><p>Esta revisão não trouxe imagens disponíveis. Tente abrir a sessão novamente.</p></Screen>;
   return <ReviewBody key={runId ?? "sem-analise"} session={session} replay={replay} refresh={refresh} />;
 }
 
@@ -90,12 +99,12 @@ function ReviewBody({ session, replay, refresh }: { session: Session; replay: Re
       title={session.video.title}
       compact
       back={{ label: "Seus saques", onClick: () => go("/") }}
-      hero={(
+    >
+      <div className="revisao-layout">
+      <section className="revisao-video" aria-label="Vídeo e reprodução">
         <div className="palco-sangria" style={{ marginTop: 0 }}>
           <VideoStage painter={painter} frame={frameIdx} keypoints={overlay ? frame.keypoints : null} label={label} />
         </div>
-      )}
-    >
       <div className="controles">
         <div className="tempo-linha">
           <span className="tempo" data-testid="tempo">{reliable ? time : "Tempo indisponível"}</span>
@@ -129,11 +138,16 @@ function ReviewBody({ session, replay, refresh }: { session: Session; replay: Re
         </div>
       </div>
 
+      </section>
+      <section className="revisao-leitura" aria-label="Leitura da revisão">
+      <h2 className="subtitulo">Observe um momento por vez</h2>
+      <p className="orientacao-replay">Pause, avance um quadro e confira se o desenho acompanha o corpo. Você pode desligar o esqueleto para olhar só o vídeo.</p>
+
       {primary && <IssueCard issue={primary} id={id} jump={primary.frame_index !== null ? () => seek(primary.frame_index!) : undefined} />}
 
       <dl className="estados">
         <div><dt>Processamento</dt><dd>{session.run ? processingLine(session) : "Não analisado"}</dd></div>
-        <div><dt>Filmagem</dt><dd>{captureLine({ ...session, capture: replay.capture })}</dd></div>
+        <div><dt>Acompanhamento neste trecho</dt><dd>{captureLine({ ...session, capture: replay.capture })}</dd></div>
       </dl>
 
       {hasSkeleton && overlay && !skeletonHere && !primary && (
@@ -193,6 +207,8 @@ function ReviewBody({ session, replay, refresh }: { session: Session; replay: Re
       <div className="acoes" style={{ position: "static" }}>
         <button type="button" className="btn btn-secundario" onClick={() => go("/como-filmar")}>Novo vídeo</button>
         <DeleteButton session={session} refresh={refresh} />
+      </div>
+      </section>
       </div>
     </Screen>
   );

@@ -55,7 +55,15 @@ checksums SHA-256. A demo também preserva seu vídeo sintético. `checksums.jso
 é gravado por último; sem ele, o diretório está incompleto. Saídas existentes não
 são sobrescritas. Execuções repetidas recebem IDs novos.
 
-## Estrutura
+## Protótipo de interface
+
+Esta branch inclui a [versão Codex V2 do Quadro](frontend/README.md), baseada na
+entrega de Claude e autorizada enquanto ele está indisponível. React/TypeScript,
+vídeo sintético, seleção explícita e replay; sem upload real ou medição validada.
+O [laboratório de avaliação](docs/UI_AGENT_EVALUATION.md) mantém testes automáticos,
+agentes externos e usabilidade humana como evidências distintas.
+
+## Estrutura do repositório
 
 ```text
 src/tennis_backend/   contratos, mídia, métricas e pipeline local

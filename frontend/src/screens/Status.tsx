@@ -36,7 +36,7 @@ export function Failed({ session, refresh }: { session: Session; refresh: () => 
   const retryable = session.run?.error?.retryable ?? false;
   return (
     <Screen title="O processamento falhou" back={{ label: "Seus saques", onClick: () => go("/") }}>
-      <p className="lead">O problema foi no nosso processamento. Não tem relação com seu vídeo nem com seu saque.</p>
+      <p className="lead">Não conseguimos concluir o processamento. Isso não é uma avaliação do seu saque.</p>
       <p style={{ marginBottom: 16 }}>O vídeo continua guardado{retryable ? " e você pode tentar de novo." : "."}</p>
       <details className="detalhe detalhes">
         <summary>Detalhes técnicos</summary>
@@ -44,6 +44,7 @@ export function Failed({ session, refresh }: { session: Session; refresh: () => 
       </details>
       <div className="acoes">
         {retryable && <button type="button" className="btn btn-principal" onClick={async () => { await client.retry(session.session_id); refresh(); }}>Tentar de novo</button>}
+        <button type="button" className="btn btn-secundario" onClick={() => go(`/sessao/${session.session_id}/rever`)}>Rever o vídeo sem esqueleto</button>
         <DeleteButton session={session} refresh={refresh} />
       </div>
     </Screen>
@@ -57,6 +58,7 @@ export function Cancelled({ session, refresh }: { session: Session; refresh: () 
       <p className="lead">O vídeo continua guardado. Você pode analisar de novo ou excluir.</p>
       <div className="acoes">
         <button type="button" className="btn btn-principal" onClick={async () => { await client.retry(session.session_id); refresh(); }}>Analisar de novo</button>
+        <button type="button" className="btn btn-secundario" onClick={() => go(`/sessao/${session.session_id}/rever`)}>Rever o vídeo sem esqueleto</button>
         <DeleteButton session={session} refresh={refresh} />
       </div>
     </Screen>

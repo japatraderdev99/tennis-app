@@ -12,8 +12,18 @@ export function SelectPlayer({ session, again, refresh }: { session: Session; ag
   const [options, setOptions] = useState<SeedOptions>();
   const [frameAt, setFrameAt] = useState(0);
   const [choice, setChoice] = useState<Seed | null>(null);
+  const [error, setError] = useState(false);
+  const [retry, setRetry] = useState(0);
+  const [sending, setSending] = useState(false);
 
-  useEffect(() => { void client.getSeedOptions(id).then(setOptions); }, [client, id]);
+  useEffect(() => {
+    let active = true;
+    setOptions(undefined); setChoice(null); setFrameAt(0); setError(false);
+    void client.getSeedOptions(id).then((data) => { if (active) setOptions(data); }, () => { if (active) setError(true); });
+    return () => { active = false; };
+  }, [client, id, retry]);
+
+  if (error && !options) return <Screen title="Não consegui carregar as pessoas" back={{ label: "Seus saques", onClick: () => go("/") }}><p role="alert">Tente abrir os quadros novamente.</p><button className="btn btn-principal" onClick={() => setRetry((n) => n + 1)}>Carregar quadros de novo</button></Screen>;
 
   if (!options) return <Screen title="Procurando pessoas no vídeo"><p role="status">Isto leva poucos instantes.</p></Screen>;
 
@@ -81,14 +91,18 @@ export function SelectPlayer({ session, again, refresh }: { session: Session; ag
         </details>
       </div>
       <div className="acoes">
+        {error && <p role="alert">Não consegui iniciar. Sua escolha foi mantida; tente novamente.</p>}
         <button
-          type="button" className="btn btn-principal" disabled={!choice}
+          type="button" className="btn btn-principal" disabled={!choice || sending}
           onClick={async () => {
-            if (!choice) return;
-            if (again) await client.reselect(id, choice);
-            else await client.startAnalysis(id, choice);
-            refresh();
-            go(`/sessao/${id}`);
+            if (!choice || sending) return;
+            setSending(true); setError(false);
+            try {
+              if (again) await client.reselect(id, choice);
+              else await client.startAnalysis(id, choice);
+              refresh(); go(`/sessao/${id}`);
+            } catch { setError(true); }
+            finally { setSending(false); }
           }}
         >
           {choice ? "Sou eu: continuar" : "Toque em você para continuar"}

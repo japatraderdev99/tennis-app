@@ -46,7 +46,7 @@ button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--bola); outline-offset: 3px; }
 p { margin: 0; }
 
-/* Coluna do app. No computador continua sendo a largura de um celular. */
+/* Fluxo em uma coluna; a revisão abre vídeo e leitura lado a lado no desktop. */
 .app {
   max-width: 480px;
   min-height: 100dvh;
@@ -139,17 +139,15 @@ p { margin: 0; }
 .etapas > li[data-estado="agora"]::before { background: var(--bola); height: 8px; top: 11px; width: 18px; }
 .etapas .etapa-estado { display: block; font-weight: 400; font-size: var(--t-menor); color: var(--nevoa); }
 
-/* Ações presas ao polegar. */
+/* Ações ocupam espaço próprio: nenhum botão cobre conteúdo ou foco. */
 .acoes {
-  position: sticky;
-  bottom: 0;
+  position: static;
   margin: auto calc(var(--margem) * -1) 0;
   padding: 14px var(--margem) max(16px, env(safe-area-inset-bottom));
   background: var(--quadra);
   display: flex;
   flex-direction: column;
   gap: 6px;
-  z-index: 2;
 }
 .btn {
   min-height: var(--alvo-principal);
@@ -358,6 +356,27 @@ p { margin: 0; }
 .video-opcao b { display: block; line-height: 1.2; }
 .video-opcao span { display: block; font-size: var(--t-menor); color: var(--nevoa); line-height: 1.3; margin-top: 2px; }
 .video-opcao .recomendado { color: var(--bola); font-weight: 700; }
+
+.abertura-marca { font-family: var(--titulo); font-weight: 800; font-size: 1.5rem; margin-bottom: 12px; }
+.movimento-demo { margin: -12px 0 20px; }
+.revisao-layout { display: grid; gap: 20px; min-width: 0; }
+.revisao-video, .revisao-leitura { min-width: 0; }
+.revisao-leitura h2 { margin: 0 0 14px; }
+.revisao-video .palco-sangria { margin-top: 0; }
+.revisao-video .controles { margin-bottom: 0; }
+.orientacao-replay { color: var(--nevoa); font-size: var(--t-menor); margin: 0 0 16px; }
+.palco [role="status"], .palco [role="alert"] { padding: 16px; }
+.palco[aria-busy="true"] canvas { visibility: hidden; }
+.palco[data-error="true"] canvas { display: none; }
+
+@media (min-width: 960px) {
+  .app:has(.revisao-layout) { max-width: 1120px; }
+  .revisao-layout { grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr); gap: 32px; align-items: start; }
+  .revisao-video { position: sticky; top: 16px; }
+  .revisao-video .palco-sangria, .revisao-video .controles { margin-left: 0; margin-right: 0; }
+  .revisao-video .palco { max-height: 52dvh; }
+  .revisao-leitura .acoes { margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+}
 
 /* Diagrama de captura */
 .diagrama { display: block; width: 100%; max-width: 340px; height: auto; margin: 0 0 18px; }
