@@ -1,5 +1,7 @@
 # UX V3 — private local media bridge
 
+Implementation commit: `f902229` on `feat/ux-real-video-v3`.
+
 Scope: read-only development/preview bridge and preparation script. No scientific
 API, upload, model inference or production storage was added. Original files are
 opened read-only. Only synthetic transport fixtures are used in automated tests.
