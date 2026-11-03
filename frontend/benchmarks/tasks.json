@@ -1,0 +1,15 @@
+{
+  "catalog_version": "0.1.0",
+  "environment": "tennis_synthetic_local",
+  "scope": "Navigation and observable UI invariants. Not biomechanical accuracy or human usability.",
+  "tasks": [
+    {"id":"UI-01","name":"First use to review","instruction":"Comece pelo primeiro uso, escolha Saque na quadra 2, selecione a pessoa em primeiro plano e reveja o vídeo.","terminal":"Review player visible after explicit selection."},
+    {"id":"UI-02","name":"Recover an interrupted selection","instruction":"Abra Saque e busca da bola. Quando o aplicativo perder o jogador, escolha-o novamente e encontre o trecho que permaneceu sem esqueleto.","terminal":"New selection completed; original gap remains visible."},
+    {"id":"UI-03","name":"Replay after failure","instruction":"Abra Saque durante uma falha. Após a falha, reveja o vídeo sem tentar outra análise.","terminal":"Media-only replay reachable from failure, with no skeleton."},
+    {"id":"UI-04","name":"Replay after cancellation","instruction":"Inicie a análise de Saque na quadra 2, cancele e reveja o vídeo sem iniciar outra análise.","terminal":"Media-only replay reachable from cancellation, with no skeleton."},
+    {"id":"UI-05","name":"Find and delete a session","instruction":"Analise Saque na quadra 2, encontre a sessão no histórico e exclua vídeo e dados. Confira o histórico vazio.","terminal":"Deletion confirmation and empty history visible."},
+    {"id":"UI-06","name":"Keyboard access to player selection","instruction":"Na seleção de Saque na quadra 2, use apenas Tab e Enter para escolher a pessoa em primeiro plano e continuar.","terminal":"Visible, unobscured focused target; explicit selection; review reached."}
+  ],
+  "independent_checks": ["visible_demo_notice", "no_numeric_biomechanical_claim", "null_or_unavailable_measurement_copy_when_replay_available"],
+  "external_agent_results": []
+}
