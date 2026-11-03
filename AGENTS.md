@@ -1,5 +1,18 @@
 # Operating agreement — P1 foundation
 
+## Current wave: real local video UX V3
+
+The user now explicitly authorizes improving UX/UI and testing recently edited
+tennis videos on their computer. Work only in `backend-worktrees/ux-real-video-v3`,
+branch `feat/ux-real-video-v3`. This supersedes V2's synthetic-only restriction for
+local playback and inspection. Preserve V1/V2 and original media. Local files,
+posters, filenames, paths and detailed private metadata stay outside Git; no upload
+to an external service, deployment, paid API or invented pose/biomechanics.
+Head owns visual design, app integration, docs and Git publication. Collaborators
+edit only assigned files. Keep the synthetic demo visibly separate from real media.
+Use video playback time for user bookmarks, never claim original PTS or exact frame
+stepping from HTMLVideoElement alone. Real analysis needs separately bound evidence.
+
 ## Current authorized wave: Codex UX V2 and evaluation lab
 
 On 2026-11-02 the user explicitly asked Codex to implement its own improvements

@@ -4,17 +4,17 @@ import "@fontsource-variable/archivo/wdth.css";
 import "@fontsource-variable/atkinson-hyperlegible-next/wght.css";
 import "./styles/app.css";
 import { App } from "./App";
+import { RealApp } from "./local/RealApp";
 import { createMockClient } from "./mocks/mockClient";
 import { ClientProvider } from "./ui/parts";
 
 // Cliente de demonstração. Integração real também exige adapter de mídia e mapa de PTS.
-const fast = new URLSearchParams(window.location.search).get("velocidade") === "rapida";
+const params = new URLSearchParams(window.location.search);
+const fast = params.get("velocidade") === "rapida";
 const client = createMockClient({ speed: fast ? 0.08 : 1 });
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ClientProvider value={client}>
-      <App />
-    </ClientProvider>
+    {params.get("demo") === "1" ? <ClientProvider value={client}><App /></ClientProvider> : <RealApp />}
   </StrictMode>,
 );

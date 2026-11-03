@@ -57,9 +57,10 @@ são sobrescritas. Execuções repetidas recebem IDs novos.
 
 ## Protótipo de interface
 
-Esta branch inclui a [versão Codex V2 do Quadro](frontend/README.md), baseada na
-entrega de Claude e autorizada enquanto ele está indisponível. React/TypeScript,
-vídeo sintético, seleção explícita e replay; sem upload real ou medição validada.
+Esta branch inclui a [versão V3 do Quadro](frontend/README.md), baseada na entrega
+de Claude e na V2 do Codex. React/TypeScript, vídeos reais locais, repetição de trechos
+e observações manuais. A demonstração sintética fica separada. Sem upload externo,
+pose sobre os vídeos editados ou medição validada.
 O [laboratório de avaliação](docs/UI_AGENT_EVALUATION.md) mantém testes automáticos,
 agentes externos e usabilidade humana como evidências distintas.
 

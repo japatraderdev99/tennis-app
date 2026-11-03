@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Protótipo navegável com dados simulados. Não é o aplicativo de produção.",
+  "description": "Revisão local de vídeos de tênis e demonstração sintética separada. Sem medição biomecânica validada.",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",

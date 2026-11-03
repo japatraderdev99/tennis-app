@@ -67,7 +67,7 @@ async function noMeasurement(page: Page) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/?demo=1&velocidade=rapida");
   await page.evaluate(() => localStorage.clear());
   await page.reload();
 });

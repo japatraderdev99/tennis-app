@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/"); await page.evaluate(() => localStorage.clear()); await page.reload();
+  await page.goto("/?demo=1&velocidade=rapida"); await page.evaluate(() => localStorage.clear()); await page.reload();
 });
 
 test("all gallery choices have reachable, unobscured pointer and keyboard targets", async ({ page }) => {
