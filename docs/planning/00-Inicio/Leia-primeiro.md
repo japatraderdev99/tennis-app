@@ -8,6 +8,11 @@ responsavel: Codex
 
 # App Tennis — cérebro da operação
 
+**Atualização UX — 02/11/2026:** o usuário autorizou Codex a melhorar a interface
+enquanto Claude está indisponível. Entrega isolada, pesquisa de agentes e evidências
+em Quadro Codex V2 (material local não incluído).
+A divisão de trabalho descrita abaixo registra a etapa anterior; a V1 foi preservada.
+
 **Checkpoint atual — 02/11/2026:** [Checkpoint-P2-laboratorio-2026-11-02](../08-Operacao/Checkpoint-P2-laboratorio-2026-11-02.md).
 Laboratório de pose integrado, 1.077 testes locais e inferência real limitada.
 Stack proposta em [Arquitetura-cloud-do-piloto](../04-Arquitetura/Arquitetura-cloud-do-piloto.md); chats e responsabilidades em
