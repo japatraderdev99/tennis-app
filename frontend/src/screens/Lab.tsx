@@ -46,7 +46,7 @@ export function Lab() {
         <li><b>Explore o movimento</b><span>Reproduza, pause e ligue ou desligue o esqueleto.</span></li>
       </ol>
       <a className="demo-real-link" href="/">Revisar meus vídeos reais</a>
-      <p className="menor demo-real-help">Nos seus vídeos, você pode repetir trechos e anotar observações. A análise automática ainda não está conectada.</p>
+      <p className="menor demo-real-help">Nos seus vídeos, você pode repetir trechos, anotar observações e pedir a estimativa dos pontos do corpo em uma imagem congelada.</p>
       <details className="detalhe demo-scenarios">
         <summary>Outros cenários de teste</summary>
         <div>

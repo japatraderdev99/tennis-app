@@ -1,5 +1,17 @@
 # Operating agreement — P1 foundation
 
+## Current wave: operational real-frame analysis, 2026-11-03
+
+Gabriel explicitly asked to make real analysis operational after importing a real
+video. The head may restore the official local model weights and connect bounded
+single-image inference to the V3 interface. This extends the earlier playback-only
+wave. No video/cloud upload or scientific metric promotion. A captured frame must
+bind returned points by its PNG hash and dimensions; manual player selection is
+required, including a single candidate. Draw only on that same frozen image,
+never on a playing video without a verified source-frame mapping. No fabricated
+PTS, angles, identity, scores or coaching. Keep private weights/runtime config and
+real images/results out of Git. Child agents own only assigned paths.
+
 ## Current wave: real local video UX V3
 
 The user now explicitly authorizes improving UX/UI and testing recently edited

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Moment, ReviewVideo } from "./types";
 import { formatPlayback, readMoments, validateLoop, writeMoments } from "./moments";
 import { Icon } from "./icons";
+import { FrameAnalysis } from "./FrameAnalysis";
 
 export function RealReview({ video, onBack }: { video: ReviewVideo; onBack: () => void }) {
   const media = useRef<HTMLVideoElement>(null);
@@ -138,7 +139,8 @@ export function RealReview({ video, onBack }: { video: ReviewVideo; onBack: () =
             <button className="r-icon-button" aria-label="Tela cheia" onClick={() => void fullscreen()}><Icon name="expand" /></button>
           </div>
         </div>
-        <div className="r-review-actions"><button className="r-button r-primary" disabled={!ready || moments.length >= 200} onClick={mark}><Icon name="mark" />Marcar momento</button><span>Pause para olhar. Marque para voltar.</span></div>
+        <FrameAnalysis media={media} ready={ready} videoId={video.id} />
+        <div className="r-review-actions"><button className="r-button r-secondary" disabled={!ready || moments.length >= 200} onClick={mark}><Icon name="mark" />Marcar momento</button><span>Marque um instante para voltar e anotar.</span></div>
         {notice && <p className="r-notice" role="status">{notice}</p>}
         <details className="r-loop-panel"><summary><Icon name="repeat" />Repetir um trecho<span>{looping ? "Ligado" : "Definir início e fim"}</span></summary><div>
           <p>Vá ao início do trecho e marque. Depois, faça o mesmo com o fim.</p>
@@ -157,7 +159,7 @@ export function RealReview({ video, onBack }: { video: ReviewVideo; onBack: () =
         </li>)}</ul>
         {moments.length > 0 && <button className="r-export" onClick={exportMoments}>Exportar meus momentos</button>}
         <p className="r-storage-copy">{video.origin === "catalog" && storageAvailable ? "Suas anotações ficam guardadas neste navegador." : "Suas anotações ficam nesta aba. Exporte antes de fechar esta revisão."}</p>
-        <details className="r-video-details"><summary>Sobre esta revisão</summary><dl><dt>Origem</dt><dd>{video.origin === "catalog" ? "Biblioteca deste computador" : "Arquivo escolhido neste dispositivo"}</dd><dt>Tempo das marcações</dt><dd>Relógio deste arquivo. Não identifica o quadro exato nem o tempo de uma gravação original anterior à edição.</dd><dt>Vídeo original</dt><dd>Permanece intacto. Marcar, anotar ou remover um momento não altera o arquivo.</dd><dt>Análise automática</dt><dd>Não executada para este vídeo. Sem esqueleto, medidas ou nota de técnica.</dd></dl></details>
+        <details className="r-video-details"><summary>Sobre esta revisão</summary><dl><dt>Origem</dt><dd>{video.origin === "catalog" ? "Biblioteca deste computador" : "Arquivo escolhido neste dispositivo"}</dd><dt>Tempo das marcações</dt><dd>Relógio deste arquivo. Não identifica o quadro exato nem o tempo de uma gravação original anterior à edição.</dd><dt>Vídeo original</dt><dd>Permanece intacto. Marcar, anotar ou remover um momento não altera o arquivo.</dd><dt>Análise de imagem</dt><dd>Ao pedir a análise, um quadro é processado neste computador. Os pontos aparecem apenas na imagem congelada correspondente. Não há análise do movimento inteiro, medidas biomecânicas validadas ou nota de técnica.</dd></dl></details>
       </aside>
     </div>
   </main>;

@@ -90,7 +90,7 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: End to end UI checks
         working-directory: frontend
-        run: npx playwright test journey.spec.ts improvements.spec.ts local-review.spec.ts --workers=1 --retries=0
+        run: npx playwright test journey.spec.ts improvements.spec.ts local-review.spec.ts guided-demo.spec.ts frame-analysis.spec.ts --workers=1 --retries=0
       - name: Run deterministic task benchmark
         working-directory: frontend
         env:

@@ -1,0 +1,26 @@
+.r-analysis { margin-top:24px; padding:24px 0; border-top:2px solid #c6d3e7; }
+.r-analysis-intro h2 { font-size:25px; margin:0 0 10px; }
+.r-analysis-intro p { color:var(--r-muted); max-width:62ch; }
+.r-analysis-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:18px 0 12px; }
+.r-analysis-scope,.r-analysis-caption,.r-analysis-limit { font-size:14px; color:var(--r-muted); max-width:76ch; }
+.r-analysis-notice { margin-top:14px; padding:12px 14px; border-left:3px solid var(--r-blue); background:white; }
+.r-analysis-notice .r-button { margin-top:10px; }
+.r-analysis-result { margin-top:24px; }
+.r-analysis-result h3 { font-size:23px; margin:0 0 8px; }
+.r-analysis-result h3:focus { outline:none; }
+.r-analysis-result>p { margin-bottom:14px; }
+.r-analysis-image { position:relative; background:#0c2a63; width:100%; margin:16px 0 10px; overflow:hidden; border-radius:10px; }
+.r-analysis-image>img { display:block; width:100%; height:100%; }
+.r-analysis-image>svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.r-analysis-image line { stroke:#e4f222; stroke-width:3; vector-effect:non-scaling-stroke; stroke-linecap:round; }
+.r-analysis-image circle { fill:#e4f222; stroke:#0c2a63; stroke-width:1.5; vector-effect:non-scaling-stroke; }
+.real-app .r-person-box { position:absolute; padding:0; min-width:24px; min-height:24px; border:2px solid #fff; border-radius:4px; background:transparent; color:#0c2a63; cursor:pointer; }
+.real-app .r-person-box[aria-pressed="true"] { border-color:#e4f222; }
+.r-person-box>span { position:absolute; top:0; left:0; padding:2px 5px; background:white; font-size:12px; font-weight:700; white-space:nowrap; }
+.r-person-box[aria-pressed="true"]>span { background:#e4f222; }
+.r-analysis-people { display:flex; gap:10px; flex-wrap:wrap; margin:16px 0; }
+.r-analysis-people .r-button[aria-pressed="true"] { background:var(--r-blue); color:white; }
+.r-analysis-selection { display:flex; gap:16px; align-items:center; justify-content:space-between; margin:16px 0; }
+.r-analysis-selection p { font-size:15px; max-width:52ch; }
+.r-analysis-selection .r-button { flex-shrink:0; }
+@media(max-width:600px) { .r-analysis-selection { flex-direction:column; align-items:flex-start; } .r-analysis-actions .r-button { width:100%; } .r-analysis-image { border-radius:5px; } }

@@ -72,7 +72,7 @@ export function RealApp() {
         </div>
       </> : <>
         <div className="r-library-intro">
-          <div><h1 ref={heading} tabIndex={-1}>Seu jogo, visto de perto.</h1><p>Escolha um vídeo abaixo para começar ou use “Abrir vídeo”. Depois, pause um movimento e marque o que quer observar.</p><p className="r-mode-help">Aqui você revisa e anota. <a href="/?demo=1#/estados">Ver como funciona a análise simulada</a></p></div>
+          <div><h1 ref={heading} tabIndex={-1}>Seu jogo, visto de perto.</h1><p>Escolha um vídeo abaixo ou use “Abrir vídeo”. Pause no movimento que quer observar e clique em “Analisar este quadro”.</p><p className="r-mode-help">Pontos do corpo estimados em uma imagem real, com processamento local. Sem avaliação de técnica.</p></div>
           <p className="r-local-label"><span aria-hidden="true" />Revisão local<span className="r-local-small">Sem enviar seus vídeos</span></p>
         </div>
         {error && <div className="r-alert" role="alert"><p>{error}</p><button onClick={() => setRetry(n => n + 1)}>Tentar biblioteca novamente</button></div>}
@@ -88,7 +88,7 @@ export function RealApp() {
         </section>}
         <section className="r-observe-guide" aria-label="Como usar a revisão"><div><span className="r-step">1</span><h2>Encontre o momento</h2><p>Use a linha do tempo para voltar a uma troca.</p></div><div><span className="r-step">2</span><h2>Olhe com calma</h2><p>Reduza a velocidade ou repita um trecho.</p></div><div><span className="r-step">3</span><h2>Guarde sua percepção</h2><p>Marque um instante e escreva uma observação.</p></div></section>
       </>}
-      <footer className="r-footer"><p>Seus vídeos ficam neste dispositivo. Nenhuma análise automática é feita nesta revisão.</p><button onClick={() => { setSelected(null); setGuide(!guide); }}>{guide ? "Voltar aos vídeos" : "Como filmar sozinho"}</button><a href="/?demo=1#/estados">Explorar a demonstração com esqueleto simulado</a></footer>
+      <footer className="r-footer"><p>Seus vídeos ficam neste dispositivo. A análise de um quadro estima pontos do corpo; não avalia sua técnica.</p><button onClick={() => { setSelected(null); setGuide(!guide); }}>{guide ? "Voltar aos vídeos" : "Como filmar sozinho"}</button><a href="/?demo=1#/estados">Explorar a demonstração com esqueleto simulado</a></footer>
     </main>}
   </div>;
 }
