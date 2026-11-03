@@ -1,5 +1,5 @@
 import { expect, test, type Page, type Browser, type TestInfo } from "@playwright/test";
-import catalog from "../benchmarks/tasks.json";
+import catalog from "../benchmarks/tasks.json" with { type: "json" };
 
 type Outcome = "passed" | "failed" | "not_evaluated";
 type Observation = {
