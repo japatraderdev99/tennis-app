@@ -75,19 +75,65 @@ export function selectTarget(
   return out;
 }
 
+/** Validate one complete selection timeline before composing identities. */
+function validateSelection(call: SelectionFrame[], reference: SelectionFrame[]): void {
+  if (call.length !== reference.length || call.length === 0) throw new Error("linhas de tempo incompatíveis");
+  let started = false;
+  let stopped = false;
+  let previousIndex = -1;
+  let previousPts: number | null = null;
+  for (let i = 0; i < call.length; i++) {
+    const frame = call[i]!;
+    const source = reference[i]!;
+    if (!Number.isSafeInteger(frame.frame_index) || frame.frame_index <= previousIndex
+        || (frame.pts !== null && !Number.isSafeInteger(frame.pts))) {
+      throw new Error("quadro ou PTS inválido na seleção");
+    }
+    if (frame.pts !== null && previousPts !== null && frame.pts <= previousPts) {
+      throw new Error("PTS deve crescer na seleção");
+    }
+    if (frame.frame_index !== source.frame_index || frame.pts !== source.pts) {
+      throw new Error("seleções precisam corresponder aos mesmos quadros e PTS");
+    }
+    previousIndex = frame.frame_index;
+    if (frame.pts !== null) previousPts = frame.pts;
+    if (frame.status === "selected") {
+      if (stopped || typeof frame.detection_id !== "string" || !frame.detection_id.trim() || frame.reason !== null) {
+        throw new Error("seleção inválida ou recuperada sem nova semente");
+      }
+      started = true;
+    } else {
+      if (frame.detection_id !== null || typeof frame.reason !== "string" || !frame.reason.trim()) {
+        throw new Error("estado sem seleção precisa de motivo, sem identidade");
+      }
+      if (frame.status === "not_started") {
+        if (started) throw new Error("seleção iniciada não pode voltar a not_started");
+      } else if (frame.status === "lost" || frame.status === "ambiguous") {
+        if (!started) throw new Error("seleção precisa começar com semente válida");
+        stopped = true;
+      } else {
+        throw new Error("estado de seleção inválido");
+      }
+    }
+  }
+  if (!started) throw new Error("seleção sem semente aplicada");
+}
+
 /**
- * PROPOSTA: cada nova semente é uma chamada separada. O replay mostra, por quadro,
- * a seleção mais recente que acompanhou o jogador; sem nenhuma, mantém o motivo.
+ * Mock-only composition: calls are in request order, newest last. Once a new
+ * explicit seed applies, it owns the remaining interval, including loss and
+ * ambiguity. Never revive an older identity because the newer one was lost.
+ * The real service will bind these segments to versioned candidate evidence.
  */
 export function mergeSelections(calls: SelectionFrame[][]): SelectionFrame[] {
   const first = calls[0];
   if (!first) return [];
+  for (const call of calls) validateSelection(call, first);
   return first.map((_, i) => {
-    const entries = calls.map((c) => c[i]!);
-    for (let k = entries.length - 1; k >= 0; k--) {
-      if (entries[k]!.status === "selected") return entries[k]!;
+    for (let k = calls.length - 1; k >= 0; k--) {
+      const frame = calls[k]![i]!;
+      if (frame.status !== "not_started") return frame;
     }
-    // A chamada mais antiga guarda o motivo original da perda.
-    return entries.find((e) => e.status !== "not_started") ?? entries[0]!;
+    return first[i]!;
   });
 }
