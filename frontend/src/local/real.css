@@ -28,6 +28,8 @@
 .r-library,.r-review { max-width:1344px; margin:auto; padding:44px 48px 32px; }
 .r-library-intro { display:flex; align-items:center; justify-content:space-between; gap:36px; margin-bottom:34px; }
 .r-library-intro>div>p { color:var(--r-muted); font-size:18px; max-width:660px; }
+.r-library-intro>div>.r-mode-help { margin-top:12px; font-size:15px; }
+.r-mode-help a { display:inline-block; color:var(--r-blue); text-underline-offset:4px; padding:10px 0; }
 .r-local-label { flex-shrink:0; font-size:14px; color:var(--r-text); }
 .r-local-label>span:first-child { display:inline-block; width:7px; height:7px; border-radius:100%; background:#27735b; margin-right:8px; }
 .r-local-small { display:block; padding-left:15px; color:var(--r-muted); font-size:13px; }

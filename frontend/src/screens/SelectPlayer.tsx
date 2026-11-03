@@ -55,7 +55,10 @@ export function SelectPlayer({ session, again, refresh }: { session: Session; ag
   return (
     <Screen
       title={again ? "Toque em você de novo" : "Toque em você"}
+      compact
       hero={(
+        <>
+        {client.isDemo && <p className="demo-cue"><b>Escolha uma das pessoas desenhadas.</b> Toque na caixa sobre ela. Depois, confirme em “Sou eu: continuar”. Neste exemplo, ninguém é você de verdade.</p>}
         <div className="palco-sangria" style={{ marginBottom: 16 }}>
           <VideoStage painter={painter} frame={seedFrame.frame_index} label={`Quadro do vídeo com ${people.length === 1 ? "uma pessoa marcada" : `${people.length} pessoas marcadas`}.`}>
             {people.map((d, i) => {
@@ -77,6 +80,7 @@ export function SelectPlayer({ session, again, refresh }: { session: Session; ag
             })}
           </VideoStage>
         </div>
+        </>
       )}
     >
       <p style={{ marginBottom: 12 }}>

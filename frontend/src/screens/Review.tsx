@@ -100,6 +100,7 @@ function ReviewBody({ session, replay, refresh }: { session: Session; replay: Re
       compact
       back={{ label: "Seus saques", onClick: () => go("/") }}
     >
+      {client.isDemo && <p className="demo-cue"><b>Agora, toque em Reproduzir.</b> Pause para usar “Próximo quadro”{hasSkeleton ? " ou toque em “Esqueleto ligado” para esconder as linhas." : "."} Este exemplo não avalia sua técnica.</p>}
       <div className="revisao-layout">
       <section className="revisao-video" aria-label="Vídeo e reprodução">
         <div className="palco-sangria" style={{ marginTop: 0 }}>
@@ -160,7 +161,7 @@ function ReviewBody({ session, replay, refresh }: { session: Session; replay: Re
         {hasSkeleton && <details className="detalhe">
           <summary>Como ler o esqueleto</summary>
           <div>
-            <p>É uma estimativa de onde está o corpo em cada quadro. Confira se os pontos batem com o que você vê.</p>
+            <p>{client.isDemo ? "Neste exemplo, os pontos e linhas são simulados. A demonstração mostra como usar os controles; não houve análise de uma gravação real." : "É uma estimativa de onde está o corpo em cada quadro. Confira se os pontos batem com o que você vê."}</p>
             <p>Quando falta um pedaço do esqueleto, o app não conseguiu marcar aquele ponto. Isso não indica erro no seu movimento.</p>
             <button type="button" className="voltar" onClick={() => go("/limites")}>Ler os limites do app</button>
           </div>
@@ -207,6 +208,7 @@ function ReviewBody({ session, replay, refresh }: { session: Session; replay: Re
         </details>
       </div>
       <div className="acoes" style={{ position: "static" }}>
+        {client.isDemo && <a className="demo-real-link" href="#/estados">Voltar ao guia da demonstração</a>}
         <button type="button" className="btn btn-secundario" onClick={() => go("/como-filmar")}>Novo vídeo</button>
         <DeleteButton session={session} refresh={refresh} />
       </div>

@@ -10,6 +10,7 @@ export function Processing({ session, refresh }: { session: Session; refresh: ()
   const current = STAGE_ORDER.indexOf(stage);
   return (
     <Screen title="Processando o vídeo">
+      <p className="demo-cue"><b>Aguarde: a revisão abrirá automaticamente.</b>{client.isDemo && " Esta preparação é simulada."}</p>
       <p style={{ marginBottom: 20 }}>Isto mostra só o andamento. Não diz nada sobre a qualidade do vídeo nem do seu saque.</p>
       <ol className="lateral etapas" aria-live="polite">
         {STAGE_ORDER.map((s, i) => {
