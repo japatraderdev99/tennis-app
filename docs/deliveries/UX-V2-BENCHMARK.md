@@ -1,6 +1,7 @@
 # UX V2 — local UI benchmark harness
 
 Owner: Codex benchmark subagent. Date: 2026-11-02. Branch `feat/ux-codex-v2`.
+Implementation commit: `c85fdbb`.
 Owned changes only: `frontend/benchmarks/`, `frontend/e2e/benchmark.spec.ts` and
 this delivery note. UI, dependencies, package scripts and CI belong to the head.
 
