@@ -141,7 +141,9 @@ function ReviewBody({ session, replay, refresh }: { session: Session; replay: Re
       </section>
       <section className="revisao-leitura" aria-label="Leitura da revisão">
       <h2 className="subtitulo">Observe um momento por vez</h2>
-      <p className="orientacao-replay">Pause, avance um quadro e confira se o desenho acompanha o corpo. Você pode desligar o esqueleto para olhar só o vídeo.</p>
+      <p className="orientacao-replay">{hasSkeleton
+        ? "Pause, avance um quadro e confira se o desenho acompanha o corpo. Você pode desligar o esqueleto para olhar só o vídeo."
+        : "Pause e avance um quadro para observar o movimento. Este vídeo está disponível sem esqueleto."}</p>
 
       {primary && <IssueCard issue={primary} id={id} jump={primary.frame_index !== null ? () => seek(primary.frame_index!) : undefined} />}
 

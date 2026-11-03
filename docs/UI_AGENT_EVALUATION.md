@@ -78,6 +78,14 @@ nunca pelo próprio agente. O próximo teste útil é comparar MCP + modelo e Br
 Use no mesmo catálogo, seguido de teste com praticantes — não adicionar ferramentas
 sem pergunta experimental.
 
+Plano do primeiro comparativo, ainda não executado: dois executores (MCP + modelo
+e Browser Use), seis tarefas e três repetições por tarefa, total de 36 tentativas.
+Limite inicial proposto de 40 ações e 180 segundos por tarefa; qualquer exceção
+deve virar nova versão do protocolo. Fixar o modelo comum quando compatível,
+registrar divergências de ferramentas e reportar cada tentativa. O teto monetário
+precisa ser definido antes de conectar APIs pagas. Essa amostra serve para encontrar
+falhas e custo operacional; não sustenta um ranking geral de agentes.
+
 ## Como reproduzir
 
 Siga [o protocolo de execução](../frontend/benchmarks/README.md). O resultado

@@ -1,0 +1,152 @@
+{
+  "schema_version": "0.1.0",
+  "catalog_version": "0.1.0",
+  "execution_kind": "deterministic_playwright",
+  "assessment": "scripted_checks_only",
+  "metadata": {
+    "run_id": "a88c0609-7b90-42b5-8da0-39f36b1d66c4",
+    "generated_at": "2026-11-03T01:07:22.045Z",
+    "source_commit": "3695320da74221f81a3db5b508d0a15d6bebc8f3",
+    "source_tree_sha256": "dcfa37883a37fac48022ab39f9c49e20641ae238fd9f247a5895ee7e988ef1ae",
+    "working_tree_clean": true,
+    "environment": "local_synthetic",
+    "node_version": "v22.17.1",
+    "execution_kind": "deterministic_playwright"
+  },
+  "tasks": [
+    {
+      "task_id": "UI-01",
+      "execution_status": "executed",
+      "test_status": "passed",
+      "duration_ms": 12530,
+      "workflow": "passed",
+      "scientific_invariants": "passed",
+      "browser": {
+        "name": "chromium",
+        "version": "156.0.8078.4"
+      },
+      "viewport": {
+        "width": 412,
+        "height": 839
+      },
+      "evidence": {
+        "reporter_test_title": "@benchmark UI-01 first use to review",
+        "observation_attached": true
+      }
+    },
+    {
+      "task_id": "UI-02",
+      "execution_status": "executed",
+      "test_status": "passed",
+      "duration_ms": 2599,
+      "workflow": "passed",
+      "scientific_invariants": "passed",
+      "browser": {
+        "name": "chromium",
+        "version": "156.0.8078.4"
+      },
+      "viewport": {
+        "width": 412,
+        "height": 839
+      },
+      "evidence": {
+        "reporter_test_title": "@benchmark UI-02 explicit reselection preserves the gap",
+        "observation_attached": true
+      }
+    },
+    {
+      "task_id": "UI-03",
+      "execution_status": "executed",
+      "test_status": "passed",
+      "duration_ms": 1733,
+      "workflow": "passed",
+      "scientific_invariants": "passed",
+      "browser": {
+        "name": "chromium",
+        "version": "156.0.8078.4"
+      },
+      "viewport": {
+        "width": 412,
+        "height": 839
+      },
+      "evidence": {
+        "reporter_test_title": "@benchmark UI-03 failed analysis retains media-only replay",
+        "observation_attached": true
+      }
+    },
+    {
+      "task_id": "UI-04",
+      "execution_status": "executed",
+      "test_status": "passed",
+      "duration_ms": 977,
+      "workflow": "passed",
+      "scientific_invariants": "passed",
+      "browser": {
+        "name": "chromium",
+        "version": "156.0.8078.4"
+      },
+      "viewport": {
+        "width": 412,
+        "height": 839
+      },
+      "evidence": {
+        "reporter_test_title": "@benchmark UI-04 cancelled analysis retains media-only replay",
+        "observation_attached": true
+      }
+    },
+    {
+      "task_id": "UI-05",
+      "execution_status": "executed",
+      "test_status": "timedOut",
+      "duration_ms": 30115,
+      "workflow": "failed",
+      "scientific_invariants": "not_evaluated",
+      "browser": {
+        "name": "chromium",
+        "version": "156.0.8078.4"
+      },
+      "viewport": {
+        "width": 412,
+        "height": 839
+      },
+      "evidence": {
+        "reporter_test_title": "@benchmark UI-05 history and deletion",
+        "observation_attached": true
+      }
+    },
+    {
+      "task_id": "UI-06",
+      "execution_status": "executed",
+      "test_status": "passed",
+      "duration_ms": 2375,
+      "workflow": "passed",
+      "scientific_invariants": "passed",
+      "browser": {
+        "name": "chromium",
+        "version": "156.0.8078.4"
+      },
+      "viewport": {
+        "width": 412,
+        "height": 839
+      },
+      "evidence": {
+        "reporter_test_title": "@benchmark UI-06 keyboard-only explicit player choice",
+        "observation_attached": true
+      }
+    }
+  ],
+  "summary": {
+    "catalog_tasks": 6,
+    "executed_tasks": 6,
+    "workflow_passed": 5,
+    "scientific_checks_passed": 5,
+    "all_checks_passed": false,
+    "agent_success_rate": null,
+    "human_usability_success_rate": null,
+    "biomechanical_accuracy": null
+  },
+  "external_agents": {
+    "status": "not_run",
+    "results": []
+  }
+}
