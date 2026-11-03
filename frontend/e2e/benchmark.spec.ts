@@ -33,12 +33,18 @@ async function observe(id: string, page: Page, browser: Browser, info: TestInfo,
     } catch (error) { result.scientific_invariants = "failed"; throw error; }
   } finally {
     await info.attach("benchmark-observation", { body: Buffer.from(JSON.stringify(result)), contentType: "application/json" });
-    await info.attach("terminal-view", { body: await page.screenshot(), contentType: "image/png" });
+    try {
+      await info.attach("terminal-view", { body: await page.screenshot(), contentType: "image/png" });
+    } catch {
+      // A timed-out context may already be closed. Preserve the original failure.
+      await info.attach("terminal-view-unavailable", { body: "Browser context unavailable after failure; see runner trace.", contentType: "text/plain" });
+    }
   }
 }
 
 async function pick(page: Page, title: string) {
-  await page.goto("#/escolher");
+  await page.getByRole("button", { name: "Começar", exact: true }).click();
+  await page.getByRole("button", { name: "Já gravei: escolher vídeo", exact: true }).click();
   await page.getByRole("button", { name: new RegExp(title) }).click();
   await page.getByRole("button", { name: "Enviar vídeo", exact: true }).click();
 }
