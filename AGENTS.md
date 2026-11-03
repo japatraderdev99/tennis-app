@@ -1,5 +1,19 @@
 # Operating agreement — P1 foundation
 
+## Current authorized wave: Codex UX V2 and evaluation lab
+
+On 2026-11-02 the user explicitly asked Codex to implement its own improvements
+while Claude is unavailable, reusing or improving existing components, and to
+research/build an evaluation approach for reverse-engineering UI agents/tools.
+This supersedes the earlier frontend ownership restriction for this isolated
+branch only. Preserve Claude's `feat/ux-ui-v1` worktree and original commit.
+Work in `backend-worktrees/ux-codex-v2`, branch `feat/ux-codex-v2`.
+Head owns UI, dependencies, CI, docs and integration. Assigned collaborators own
+only the files in their task. No cloud provisioning, real upload, paid agent runs,
+new biomechanical claims or publication of real media is included in this wave.
+Benchmarks must distinguish deterministic tests from actual agent evaluations;
+unrun tools have no invented score or ranking. Head retains authorized Git push.
+
 ## Active wave: P2 pose laboratory
 
 Gabriel authorized new parallel operational chats, gpt-6.1-sol/high, with head
