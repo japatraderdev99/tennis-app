@@ -36,6 +36,10 @@ Nenhum serviço externo, deploy, provisão cloud, inferência ou API paga foi us
   desktop e mobile emulado. Os hashes dos três originais permaneceram idênticos.
 - Os testes E2E da revisão local usam WebM sintético identificado, com catálogo
   interceptado, nunca os arquivos privados. CI executa esses testes e o legado.
+- Sete testes novos da revisão local passaram: playback/observações persistidas,
+  seletor blob, falha e recuperação, armazenamento bloqueado, loop A–B e axe/overflow
+  em 320/390 px. Os primeiros helpers foram corrigidos por selecionar navegação
+  oculta no mobile e um summary com texto adicional; nenhuma regra axe foi desligada.
 
 O resultado do CI está associado ao commit publicado e deve ser conferido no
 GitHub. A nota do vault registra seu estado observado; não é aceite de praticantes.

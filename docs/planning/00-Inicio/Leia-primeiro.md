@@ -8,6 +8,11 @@ responsavel: Codex
 
 # App Tennis — cérebro da operação
 
+**Atualização V3 — 03/11/2026:** revisão de vídeos reais locais, repetição de trechos
+e observações manuais em Quadro V3 (material local não incluído).
+Os três exports editados foram testados; pose e biomecânica nesses exports permanecem
+não executadas. V1/V2 preservadas, dados privados fora do Git.
+
 **Atualização UX — 02/11/2026:** o usuário autorizou Codex a melhorar a interface
 enquanto Claude está indisponível. Entrega isolada, pesquisa de agentes e evidências
 em Quadro Codex V2 (material local não incluído).
